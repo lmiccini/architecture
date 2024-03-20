@@ -393,3 +393,10 @@ spec:
             - name: ceph
               mountPath: /etc/ceph
               readOnly: true
+
+apiVersion: redis.openstack.org/v1beta1
+kind: Redis
+metadata:
+    name: redis
+spec:
+    replicas: 3
