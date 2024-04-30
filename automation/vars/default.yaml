@@ -250,3 +250,13 @@ vas:
           - name: service-values
             src_file: service-values.yaml
         build_output: control-plane.yaml        
+
+      - path: examples/va/pidone/edpm
+        wait_conditions:
+          - >-
+            oc -n openstack wait
+            osdpd edpm-deployment --for condition=Ready --timeout=1200s
+        values:
+          - name: edpm-nodeset-values
+            src_file: values.yaml
+        build_output: dataplane.yaml
