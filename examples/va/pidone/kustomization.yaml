@@ -7,3 +7,4 @@ components:
 
 resources:
   - values.yaml
+  - service-values.yaml  

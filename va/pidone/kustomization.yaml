@@ -24,30 +24,6 @@ components:
   - ../../lib/control-plane
 
 replacements:
-  ## Control plane customization
-  #- source:
-  #    kind: ConfigMap
-  #    name: service-values
-  #    fieldPath: data.neutron.customServiceConfig
-  #  targets:
-  #    - select:
-  #        kind: OpenStackControlPlane
-  #      fieldPaths:
-  #        - spec.neutron.template.customServiceConfig
-  #      options:
-  #        create: true
-  ## OVN control plane SRIOV customization
-  #- source:
-  #    kind: ConfigMap
-  #    name: service-values
-  #    fieldPath: data.ovn.ovnController.nicMappings
-  #  targets:
-  #    - select:
-  #        kind: OpenStackControlPlane
-  #      fieldPaths:
-  #        - spec.ovn.template.ovnController.nicMappings
-  #      options:
-  #        create: true
   - source:
       kind: ConfigMap
       name: service-values
