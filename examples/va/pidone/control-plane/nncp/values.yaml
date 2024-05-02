@@ -167,8 +167,8 @@ data:
                 start: 172.19.0.100
             cidr: 172.19.0.0/24
             name: subnet1
-            vlan: 22
-        vlan: 22
+            vlan: 24
+        vlan: 24
 kind: ConfigMap
 metadata:
     annotations:
