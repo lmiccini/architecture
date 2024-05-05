@@ -26,6 +26,25 @@ data:
     tenant_ip: 172.19.0.7
     ctlplane_ip: 192.168.122.12
     storage_ip: 172.18.0.7
+  node_3:
+    name: ostest-worker-0
+    internalapi_ip: 172.17.0.8
+    tenant_ip: 172.19.0.8
+    ctlplane_ip: 192.168.122.13
+    storage_ip: 172.18.0.8
+  node_4:
+    name: ostest-worker-1
+    internalapi_ip: 172.17.0.9
+    tenant_ip: 172.19.0.9
+    ctlplane_ip: 192.168.122.14
+    storage_ip: 172.18.0.9
+  node_5:
+    name: ostest-worker-2
+    internalapi_ip: 172.17.0.10
+    tenant_ip: 172.19.0.10
+    ctlplane_ip: 192.168.122.15
+    storage_ip: 172.18.0.10
+ 
 
   # networks
   ctlplane:
@@ -207,3 +226,4 @@ data:
   lbServiceType: LoadBalancer
   storageClass: local-storage
   bridgeName: ospbr
+
