@@ -24,7 +24,6 @@ resources:
   - values.yaml
   - ocp_pidone_nodes_nncp.yaml
 
-
 replacements:
   # Static Node IPs: node-3
   - source:
@@ -314,3 +313,36 @@ replacements:
         fieldPaths:
           - metadata.name
           - spec.nodeSelector.[kubernetes.io/hostname]
+
+patches:
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+      name: node-0
+    patch: |-
+      - op: add
+        path: /spec/nodeSelector/node-role.kubernetes.io~1master
+        value: ""
+      - op: remove
+        path: /spec/nodeSelector/node-role.kubernetes.io~1worker
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+      name: node-1
+    patch: |-
+      - op: add
+        path: /spec/nodeSelector/node-role.kubernetes.io~1master
+        value: ""
+      - op: remove
+        path: /spec/nodeSelector/node-role.kubernetes.io~1worker
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+      name: node-2
+    patch: |-
+      - op: add
+        path: /spec/nodeSelector/node-role.kubernetes.io~1master
+        value: ""
+      - op: remove
+        path: /spec/nodeSelector/node-role.kubernetes.io~1worker
+
+

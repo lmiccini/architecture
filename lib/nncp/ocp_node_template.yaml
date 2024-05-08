@@ -87,4 +87,4 @@ spec:
         mtu: 1500
   nodeSelector:
     kubernetes.io/hostname: _replaced_
-    #node-role.kubernetes.io/worker: ""
+    node-role.kubernetes.io/worker: ""
