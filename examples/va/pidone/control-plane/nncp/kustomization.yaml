@@ -22,6 +22,8 @@ components:
 
 resources:
   - values.yaml
+  - ocp_pidone_nodes_nncp.yaml
+
 
 replacements:
   # Static Node IPs: node-3
@@ -312,33 +314,3 @@ replacements:
         fieldPaths:
           - metadata.name
           - spec.nodeSelector.[kubernetes.io/hostname]
-
-#
-#patches:
-#  - target:
-#      kind: NodeNetworkConfigurationPolicy
-#    patch: |-
-#      - op: add
-#        path: /
-#        value:
-#---
-#apiVersion: nmstate.io/v1
-#kind: NodeNetworkConfigurationPolicy
-#metadata:
-#  name: node-3
-#  labels:
-#    osp/nncm-config-type: standard
-#---
-#apiVersion: nmstate.io/v1
-#kind: NodeNetworkConfigurationPolicy
-#metadata:
-#  name: node-4
-#  labels:
-#    osp/nncm-config-type: standard
-#---
-#apiVersion: nmstate.io/v1
-#kind: NodeNetworkConfigurationPolicy
-#metadata:
-#  name: node-5
-#  labels:
-#    osp/nncm-config-type: standard
