@@ -44,6 +44,12 @@ data:
     tenant_ip: 172.19.0.10
     ctlplane_ip: 192.168.122.15
     storage_ip: 172.18.0.10
+  node_6:
+    name: ostest-worker-3
+    internalapi_ip: 172.17.0.11
+    tenant_ip: 172.19.0.11
+    ctlplane_ip: 192.168.122.16
+    storage_ip: 172.18.0.11
  
 
   # networks
