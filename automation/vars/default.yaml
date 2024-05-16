@@ -239,7 +239,22 @@ vas:
             src_file: values.yaml
         build_output: nncp.yaml
 
-      - path: examples/va/pidone/control-plane
+      - pre_stage_run:
+          - name: Apply taint on worker-3
+            type: cr
+            definition:
+              spec: 
+                taints:
+                  - effect: NoSchedule
+                    key: testOperator
+                    value: true
+                  - effect: NoExecute
+                    key: testOperator
+                    value: true
+            kind: Node
+            resource_name: worker-3
+            state: patched
+        path: examples/va/pidone/control-plane
         wait_conditions:
           - >-
             oc -n openstack wait osctlplane controlplane --for condition=Ready
