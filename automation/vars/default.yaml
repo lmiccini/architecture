@@ -247,10 +247,10 @@ vas:
                 taints:
                   - effect: NoSchedule
                     key: testOperator
-                    value: true
+                    value: 'true'
                   - effect: NoExecute
                     key: testOperator
-                    value: true
+                    value: 'true'
             kind: Node
             resource_name: worker-3
             state: patched
