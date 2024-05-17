@@ -227,7 +227,7 @@ vas:
 
   pidone:
     stages:
-      - path: examples/va/pidone/control-plane/nncp
+      - path: examples/va/pidone/nncp
         wait_conditions:
           - >-
             oc -n openstack wait nncp
@@ -254,7 +254,7 @@ vas:
             kind: Node
             resource_name: worker-3
             state: patched
-        path: examples/va/pidone/control-plane
+        path: examples/va/pidone
         wait_conditions:
           - >-
             oc -n openstack wait osctlplane controlplane --for condition=Ready
@@ -266,14 +266,24 @@ vas:
             src_file: service-values.yaml
         build_output: control-plane.yaml
 
-      - path: examples/va/pidone
+      - path: examples/va/pidone/edpm/nodeset
         wait_conditions:
-          - >-
-            oc -n openstack wait openstackdataplanedeployment
-            edpm-deployment
-            --for condition=Ready
-            --timeout=1200s
+          - >-          
+            oc -n openstack wait
+            osdpns openstack-edpm --for condition=SetupReady
+            --timeout=30m          
         values:
           - name: edpm-nodeset-values
             src_file: values.yaml
-        build_output: edpm.yaml        
+        build_output: nodeset.yaml 
+
+      - path: examples/va/pidone/edpm/deployment
+        wait_conditions:
+          - >-
+            oc -n openstack wait 
+            osdpns openstack-edpm --for condition=Ready
+            --timeout=40m            
+        values:
+          - name: edpm-nodeset-values
+            src_file: values.yaml
+        build_output: deployment.yaml 

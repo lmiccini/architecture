@@ -16,4 +16,4 @@ transformers:
      create: true
 
 components:
- - ../../../lib/dataplane
+ - ../../../../lib/dataplane/nodeset
