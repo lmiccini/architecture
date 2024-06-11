@@ -2,7 +2,22 @@
 vas:
   hci:
     stages:
-      - path: examples/va/hci/control-plane/nncp
+      - pre_stage_run:
+          - name: Apply taint on worker-0
+            type: cr
+            definition:
+              spec:
+                taints:
+                  - effect: NoSchedule
+                    key: testOperator
+                    value: 'true'
+                  - effect: NoExecute
+                    key: testOperator
+                    value: 'true'
+            kind: Node
+            resource_name: worker-0
+            state: patched
+        path: examples/va/hci/control-plane/nncp
         wait_conditions:
           - >-
             oc -n openstack wait nncp
