@@ -414,7 +414,7 @@ replacements:
 patches:
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: master-0
+      name: ocp-0
     patch: |-
       - op: add
         path: /spec/nodeSelector/node-role.kubernetes.io~1master
@@ -424,7 +424,7 @@ patches:
 
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: master-1
+      name: ocp-1
     patch: |-
       - op: add
         path: /spec/nodeSelector/node-role.kubernetes.io~1master
@@ -434,7 +434,7 @@ patches:
 
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: master-2
+      name: ocp-2
     patch: |-
       - op: add
         path: /spec/nodeSelector/node-role.kubernetes.io~1master
