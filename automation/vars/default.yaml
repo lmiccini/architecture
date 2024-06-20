@@ -23,7 +23,7 @@ vas:
             oc -n openstack wait nncp
             -l osp/nncm-config-type=standard
             --for jsonpath='{.status.conditions[0].reason}'=SuccessfullyConfigured
-            --timeout=60s
+            --timeout=5m
         values:
           - name: network-values
             src_file: values.yaml
@@ -33,8 +33,10 @@ vas:
         wait_conditions:
           - >-
             oc -n openstack wait osctlplane controlplane --for condition=Ready
-            --timeout=30m
+            --timeout=60m
         values:
+          - name: service-values
+            src_file: service-values.yaml
           - name: network-values
             src_file: nncp/values.yaml
         build_output: ../control-plane.yaml
@@ -44,7 +46,7 @@ vas:
           - >-
             oc -n openstack wait
             osdpns openstack-edpm --for condition=SetupReady
-            --timeout=600s
+            --timeout=10m
         values:
           - name: edpm-nodeset-values
             src_file: values.yaml
@@ -55,7 +57,7 @@ vas:
           - >-
             oc -n openstack wait
             osdpns openstack-edpm --for condition=Ready
-            --timeout=1500s
+            --timeout=30m
         values:
           - name: edpm-deployment-values
             src_file: values.yaml

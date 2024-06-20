@@ -8,6 +8,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 
 data:
+  preserveJobs: false
   cinderVolumes:
     lvm-nvme-tcp:
       replicas: 1
@@ -41,8 +42,8 @@ data:
   glance:
     customServiceConfig: |
       [DEFAULT]
+      debug = True
       enabled_backends = default_backend:cinder
-      debug = true
       [glance_store]
       default_backend = default_backend
       [default_backend]
@@ -57,8 +58,6 @@ data:
       # cinder_use_multipath = true
       [oslo_concurrency]
       lock_path = /var/lib/glance/tmp
-      [database]
-      mysql_wsrep_sync_wait = 1
     default:
       replicas: 1
 
@@ -113,12 +112,13 @@ data:
       [ovs]
       igmp_snooping_enable = true
       [ovn]
-      ovn_emit_need_to_frag = false
+      ovn_emit_need_to_frag = true
       enable_distributed_floating_ip = false
       [ml2]
       type_drivers = geneve,vlan
       tenant_network_types = geneve,vlan
       extension_drivers = qos,port_security,dns_domain_ports
+      path_mtu = 1400
       [ml2_type_geneve]
       vni_ranges = 1:65536
       max_header_size = 38

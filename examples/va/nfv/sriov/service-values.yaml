@@ -7,6 +7,7 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 data:
+  preserveJobs: false
   neutron:
     customServiceConfig: |
       [ml2]
@@ -16,7 +17,7 @@ data:
   ovn:
     ovnController:
       nicMappings:
-        datacentre: enp4s0  # CHANGEME
+        datacentre: ospbr
   glance:
     customServiceConfig: |
       [DEFAULT]
@@ -34,3 +35,8 @@ data:
       replicas: 1
   swift:
     enabled: true
+  nova:
+    schedulerServiceTemplate:
+      customServiceConfig: |
+        [filter_scheduler]
+        enabled_filtes = AvailabilityZoneFilter,ComputeFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,ServerGroupAntiAffinityFilter,ServerGroupAffinityFilter,PciPassthroughFilter,NUMATopologyFilter,AggregateInstanceExtraSpecsFilter

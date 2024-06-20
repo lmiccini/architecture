@@ -126,18 +126,18 @@ replacements:
           - spec.glance.template.glanceAPIs.default.type
         options:
           create: true
+  # Manila
   - source:
       kind: ConfigMap
       name: service-values
-      fieldPath: data.glance.extraMounts
+      fieldPath: data.manila.enabled
     targets:
       - select:
           kind: OpenStackControlPlane
         fieldPaths:
-          - spec.glance.template.extraMounts
+          - spec.manila.enabled
         options:
           create: true
-  # Manila
   - source:
       kind: ConfigMap
       name: service-values

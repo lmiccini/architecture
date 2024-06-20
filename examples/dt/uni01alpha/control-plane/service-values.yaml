@@ -8,6 +8,7 @@ metadata:
     config.kubernetes.io/local-config: "true"
 
 data:
+  preserveJobs: false
   cinderVolumes:
     lvm-iscsi:
       replicas: 1
@@ -33,7 +34,7 @@ data:
   glance:
     customServiceConfig: |
       [DEFAULT]
-      debug=True
+      debug = True
       enabled_backends = default_backend:swift
 
       [glance_store]
@@ -46,9 +47,6 @@ data:
       swift_store_endpoint_type = internalURL
       swift_store_user = service:glance
       swift_store_key = {{ .ServicePassword }}
-
-      [database]
-      mysql_wsrep_sync_wait = 1
     default:
       replicas: 1
 
@@ -79,9 +77,10 @@ data:
 
   heat:
     enabled: true
-
-  redis:
-    enabled: true
+    customServiceConfig: |
+      [clients_heat]
+      endpoint_type: public
+      insecure: true
 
   telemetry:
     enabled: true
@@ -136,7 +135,7 @@ data:
 
       [ovn]
       ovsdb_probe_interval = 60000
-      ovn_emit_need_to_frag = false
+      ovn_emit_need_to_frag = true
 
       [ml2]
       type_drivers = geneve,vxlan,vlan,flat
