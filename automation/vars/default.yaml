@@ -3,6 +3,14 @@ vas:
   hci:
     stages:
       - pre_stage_run:
+          - name: Make masters schedulable
+            type: cr
+            definition:
+              spec:
+                mastersSchedulable: true
+            kind: Scheduler
+            resource_name: cluster
+            state: patched        
           - name: Apply taint on worker-0
             type: cr
             definition:
