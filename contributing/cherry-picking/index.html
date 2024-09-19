@@ -12,13 +12,11 @@
         <meta name="author" content="OpenStack Team">
       
       
-        <link rel="canonical" href="https://openstack-k8s-operators.github.io/architecture/faq/cr_by_components/">
+        <link rel="canonical" href="https://openstack-k8s-operators.github.io/architecture/contributing/cherry-picking/">
       
       
-        <link rel="prev" href="../..">
+        <link rel="prev" href="../pull-request-testing/">
       
-      
-        <link rel="next" href="../../contributing/documentation/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +24,7 @@
     
     
       
-        <title>Creating Smaller CRs - OpenStack K8S Operators Architectures</title>
+        <title>Getting your PR into a stable branch - OpenStack K8S Operators Architectures</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#creating-smaller-crs" class="md-skip">
+        <a href="#getting-your-pr-into-a-stable-branch" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Creating Smaller CRs
+              Getting your PR into a stable branch
             
           </span>
         </div>
@@ -451,19 +449,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -477,12 +473,119 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             FAQ
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/cr_by_components/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating Smaller CRs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contributing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Contributing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing to documentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pull-request-testing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Opening pull requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -504,7 +607,7 @@
           
   
   <span class="md-ellipsis">
-    Creating Smaller CRs
+    Getting your PR into a stable branch
   </span>
   
 
@@ -515,7 +618,7 @@
         
   
   <span class="md-ellipsis">
-    Creating Smaller CRs
+    Getting your PR into a stable branch
   </span>
   
 
@@ -537,18 +640,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#question" class="md-nav__link">
+  <a href="#method-1" class="md-nav__link">
     <span class="md-ellipsis">
-      Question
+      Method 1
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
+  <a href="#method-2" class="md-nav__link">
     <span class="md-ellipsis">
-      Answer
+      Method 2
     </span>
   </a>
   
@@ -558,111 +661,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Contributing
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
-            <span class="md-nav__icon md-icon"></span>
-            Contributing
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contributing/documentation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Contributing to documentation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contributing/pull-request-testing/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Opening pull requests
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../contributing/cherry-picking/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Getting your PR into a stable branch
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -702,18 +700,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#question" class="md-nav__link">
+  <a href="#method-1" class="md-nav__link">
     <span class="md-ellipsis">
-      Question
+      Method 1
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
+  <a href="#method-2" class="md-nav__link">
     <span class="md-ellipsis">
-      Answer
+      Method 2
     </span>
   </a>
   
@@ -737,59 +735,48 @@
   
 
 
-<h1 id="creating-smaller-crs">Creating Smaller CRs<a class="headerlink" href="#creating-smaller-crs" title="Permanent link">#</a></h1>
-<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">#</a></h2>
-<p>The kustomize command builds and results in the OpenStack control
-plane definitions and its dependent Custom Resources (CR).
-<div class="highlight"><pre><span></span><code>kustomize<span class="w"> </span>build<span class="w"> </span>architecture/examples/va/hci<span class="w"> </span>&gt;<span class="w"> </span>control-plane.yaml
+<h1 id="getting-your-pr-into-a-stable-branch">Getting your PR into a stable branch<a class="headerlink" href="#getting-your-pr-into-a-stable-branch" title="Permanent link">#</a></h1>
+<p>After your PR merges into the main branch you should open a PR to
+cherry pick it into a stable branch if appropriate. For example,
+you may want your patch to be in the
+<a href="https://github.com/openstack-k8s-operators/architecture/tree/18.0.0-proposed">18.0.0-proposed branch</a>.</p>
+<p>If you anticipate that your PR should be cherry picked then please tag
+it accordingly. For example we have a
+<a href="https://github.com/openstack-k8s-operators/architecture/issues?q=label%3Aneeds-18.0.0-proposed-cherry-pick+">needs-18.0.0-proposed-cherry-pick</a>
+tag. If we think a patch should be in a stable branch, then we will
+apply that tag to your PR to remind you to follow up to send in a
+cherry pick.</p>
+<p>Please do not ask <a href="../../OWNERS">core maintainers</a> to cherry pick your
+patch though we will be happy to review it and help merge it once the
+cherry pick PR has been submitted using one of the methods below.</p>
+<h2 id="method-1">Method 1<a class="headerlink" href="#method-1" title="Permanent link">#</a></h2>
+<p>Add a comment like the following to the PR you wish to cherry pick.
+<div class="highlight"><pre><span></span><code>/cherrypick 18.0.0-proposed
 </code></pre></div>
-The <code>control-plane.yaml</code> file contains CRs for the
-<code>NodeNetworkConfigurationPolicy</code> (NNCP), the
-<code>NetworkAttachmentDefinition</code>, MetalLB resources and
-OpenStack resources. Is it possible to create a CR file with less
-custom resources?</p>
-<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">#</a></h2>
-<p>Yes, it's possible to create CR files with less components and wait
-before applying each CR file. E.g. the file <code>nncp.yaml</code> would contain
-only <code>NodeNetworkConfigurationPolicy</code> CRs and
-<code>NetworkAttachmentDefinition</code> and other CRs could exist in another
-file like <code>networking.yaml</code>. The following process may be used to
-generate these files using kustomize.</p>
-<ul>
-<li>Modify the
-<a href="https://github.com/openstack-k8s-operators/architecture/blob/main/va/hci/kustomization.yaml">va/hci/kustomization.yaml</a>
-file so that the components list only has the nncp component:
-<div class="highlight"><pre><span></span><code><span class="nt">components</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../../lib/nncp</span>
-</code></pre></div></li>
-<li>Generate a file with only NNCP CRs:
-<div class="highlight"><pre><span></span><code>kustomize<span class="w"> </span>build<span class="w"> </span>architecture/examples/va/hci<span class="w"> </span>&gt;<span class="w"> </span>nncp.yaml
-</code></pre></div></li>
-<li>Modify the
-<a href="https://github.com/openstack-k8s-operators/architecture/blob/main/va/hci/kustomization.yaml">va/hci/kustomization.yaml</a>
-file so that the components list only has the networking component:
-<div class="highlight"><pre><span></span><code><span class="nt">components</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">../../lib/networking</span>
-</code></pre></div></li>
-<li>Generate a file with only Networking CRs:
-<div class="highlight"><pre><span></span><code>kustomize<span class="w"> </span>build<span class="w"> </span>architecture/examples/va/hci<span class="w"> </span>&gt;<span class="w"> </span>networking.yaml
-</code></pre></div></li>
-</ul>
-<p>The above process may be continued for each component.</p>
-<p>Note that <a href="https://github.com/openstack-k8s-operators/architecture/blob/main/va/hci/kustomization.yaml">va/hci/kustomization.yaml</a>
-is not the same file as
-<a href="https://github.com/openstack-k8s-operators/architecture/blob/main/examples/va/hci/kustomization.yaml">examples/va/hci/kustomization.yaml</a>.
-<code>/example/va/hci</code> is a specific example of a given VA where as
-<code>/va/hci</code> is a generic HCI VA that may be customised and shared in
-multiple examples or composed to make a larger VA.</p>
-<p>This process will work for VAs (and DTs) besides HCI, but the paths
-may be different. E.g.
-<a href="https://github.com/openstack-k8s-operators/architecture/blob/main/examples/va/nfv/sriov/kustomization.yaml">examples/va/nfv/sriov/kustomization.yaml</a>
-differs from
-<a href="https://github.com/openstack-k8s-operators/architecture/blob/main/va/nfv/sriov/kustomization.yaml">va/nfv/sriov/kustomization.yaml</a>
-and the later is in an <code>nfv</code> subdirectory
-so each component is referred to using
-<code>- ../../../lib/</code> instead of <code>- ../../lib/</code>.</p>
+The <a href="https://github.com/openshift-cherrypick-robot">openshift-cherrypick-robot</a>
+will then attempt to create a new PR of the original PR (after it
+merges) with a cherry-pick of the same patch into the desired branch.
+There are
+<a href="https://github.com/openstack-k8s-operators/architecture/pull/395#issuecomment-2352668300">examples</a>
+of this in previous PRs in this repository.</p>
+<p>If there is a <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line">merge conflict</a>,
+then method 1 will not work and you will need to use method 2.</p>
+<h2 id="method-2">Method 2<a class="headerlink" href="#method-2" title="Permanent link">#</a></h2>
+<p>If you can send a PR to this repository then you can create a cherry
+pick using the <code>git</code> command line tools without requiring any
+additional privileges. For example, the following produces a
+cherry-pick within a personal fork of the architecture repository.
+<div class="highlight"><pre><span></span><code>git remote add upstream git@github.com:openstack-k8s-operators/architecture.git 
+git fetch upstream
+git checkout -b 18.0.0-proposed upstream/18.0.0-proposed
+git push origin 18.0.0-proposed
+git log origin/main
+git cherry-pick &lt;commit hash&gt;
+git push origin 18.0.0-proposed
+</code></pre></div>
+You should then be able to use the github web interface to create the
+PR. Please add <code>(cherry picked from &lt;commit hash&gt;)</code> to the bottom of
+your commit message.</p>
 
 
 
@@ -810,7 +797,7 @@ so each component is referred to using
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2024-01-21
+    2024-09-16
   </span>
 
     
