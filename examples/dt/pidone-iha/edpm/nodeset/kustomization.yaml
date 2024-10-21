@@ -19,4 +19,4 @@ patches:
           - fstype: nfs4
             name: /var/lib/nova/instances
             opts: context=system_u:object_r:nfs_t:s0
-            path: /data/nova
+            path: 192.168.122.1:/data/nova
