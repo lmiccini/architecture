@@ -10,7 +10,7 @@ resources:
 
 
 patches:
-  - target: 
+  - target:
       kind: OpenStackDataPlaneDeployment
       name: edpm-deployment
     patch:
