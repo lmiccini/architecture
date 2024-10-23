@@ -117,3 +117,39 @@ replacements:
           - spec.glance.template.extraMounts
         options:
           create: true
+
+
+  # Cinder
+  - source:
+      kind: ConfigMap
+      name: service-values
+      fieldPath: data.cinderVolumes.nfs.customServiceConfig
+    targets:
+      - select:
+          kind: OpenStackControlPlane
+        fieldPaths:
+          - spec.cinder.template.cinderVolumes.nfs.customServiceConfig
+        options:
+          create: true
+  - source:
+      kind: ConfigMap
+      name: service-values
+      fieldPath: data.cinderVolumes.nfs.customServiceConfigSecrets
+    targets:
+      - select:
+          kind: OpenStackControlPlane
+        fieldPaths:
+          - spec.cinder.template.cinderVolumes.nfs.customServiceConfigSecrets
+        options:
+          create: true
+  - source:
+      kind: ConfigMap
+      name: service-values
+      fieldPath: data.cinderVolumes.nfs.networkAttachments
+    targets:
+      - select:
+          kind: OpenStackControlPlane
+        fieldPaths:
+          - spec.cinder.template.cinderVolumes.nfs.networkAttachments
+        options:
+          create: true
