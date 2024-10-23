@@ -42,15 +42,3 @@ data:
                 nfs:
                   path: "/data/glance"
                   server: 192.168.122.1
-
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: cinder-volume-nfs-secrets
-type: Opaque
-stringData:
-  cinder-volume-nfs-secrets: |
-    [nfs]
-    nas_host=192.168.122.1
-    nas_share_path=/data/cinder
