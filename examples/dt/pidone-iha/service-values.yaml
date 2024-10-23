@@ -30,14 +30,15 @@ data:
       filesystem_store_datadir = /var/lib/glance/images
     default:
       replicas: 1
-  extraMounts:
-    - extraVol:
-        - extraVolType: Nfs
-          mounts:
-            - mountPath: /var/lib/glance/images
-              name: nfs
-          volumes:
-            - name: nfs
-              nfs:
-                path: "/data/glance"
-                server: 192.168.122.1
+      type: single
+    extraMounts:
+      - extraVol:
+          - extraVolType: Nfs
+            mounts:
+              - mountPath: /var/lib/glance/images
+                name: nfs
+            volumes:
+              - name: nfs
+                nfs:
+                  path: "/data/glance"
+                  server: 192.168.122.1
