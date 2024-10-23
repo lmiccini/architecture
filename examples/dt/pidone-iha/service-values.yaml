@@ -8,18 +8,18 @@ metadata:
 data:
   preserveJobs: false
   cinderVolumes:
-    ontap-nfs:
+    nfs:
+      networkAttachments:
+      - storage
       customServiceConfig: |
-        [ontap]
+        [nfs]
         volume_backend_name=nfs
         volume_driver=cinder.volume.drivers.nfs.NfsDriver
         nfs_snapshot_support=true
         nas_secure_file_operations=false
         nas_secure_file_permissions=false
-      ontap-cinder-secrets.conf: |
-        [ontap]
-        nas_host = 192.168.122.1
-        nas_share_path = /data/cinder
+      customServiceConfigSecrets:
+      - cinder-volume-nfs-secrets
   glance:
     customServiceConfig: |
       [DEFAULT]
@@ -42,3 +42,15 @@ data:
                 nfs:
                   path: "/data/glance"
                   server: 192.168.122.1
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cinder-volume-nfs-secrets
+type: Opaque
+stringData:
+  cinder-volume-nfs-secrets: |
+    [nfs]
+    nas_host=192.168.122.1
+    nas_share_path=/data/cinder
