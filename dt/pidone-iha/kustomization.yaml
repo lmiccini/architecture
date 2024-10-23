@@ -23,6 +23,9 @@ components:
   - ../../lib/networking/nad
   - ../../lib/control-plane
 
+resources:
+  - nfs-secret.yaml
+
 # Add storagemgmt network template, as it is needed for CephHCI
 patches:
   - target:
