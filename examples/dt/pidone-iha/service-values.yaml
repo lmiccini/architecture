@@ -21,9 +21,6 @@ data:
         nas_host = 192.168.122.1
         nas_share_path = /data/cinder
   glance:
-    customServiceConfig: |
-      [DEFAULT]
-      debug = True
     default:
       replicas: 1
   extraMounts:
