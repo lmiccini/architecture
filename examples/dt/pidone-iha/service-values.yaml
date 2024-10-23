@@ -1,27 +1,39 @@
-## local-config: referenced, but not emitted by kustomize
-#---
-#apiVersion: v1
-#kind: ConfigMap
-#metadata:
-#  name: service-values
-#  annotations:
-#    config.kubernetes.io/local-config: "true"
-#data:
-#  preserveJobs: false
-#  glance:
-#    customServiceConfig: |
-#      [DEFAULT]
-#      enabled_backends = default_backend:swift
-#      [glance_store]
-#      default_backend = default_backend
-#      [default_backend]
-#      swift_store_create_container_on_put = True
-#      swift_store_auth_version = 3
-#      swift_store_auth_address = {{ .KeystoneInternalURL }}
-#      swift_store_endpoint_type = internalURL
-#      swift_store_user = service:glance
-#      swift_store_key = {{ .ServicePassword }}
-#    default:
-#      replicas: 1
-#  swift:
-#    enabled: true
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-values
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  preserveJobs: false
+  cinderVolumes:
+    ontap-nfs:
+      customServiceConfig: |
+        [ontap]
+        volume_backend_name=nfs
+        volume_driver=cinder.volume.drivers.nfs.NfsDriver
+        nfs_snapshot_support=true
+        nas_secure_file_operations=false
+        nas_secure_file_permissions=false
+      ontap-cinder-secrets.conf: |
+        [ontap]
+        nas_host = 192.168.122.1
+        nas_share_path = /data/cinder
+  glance:
+    customServiceConfig: |
+      [DEFAULT]
+      debug = True
+    default:
+      replicas: 1
+  extraMounts:
+    - extraVol:
+        - extraVolType: Nfs
+          mounts:
+            - mountPath: /var/lib/glance/images
+              name: nfs
+          volumes:
+            - name: nfs
+              nfs:
+                path: "/data/glance"
+                server: 192.168.122.1
