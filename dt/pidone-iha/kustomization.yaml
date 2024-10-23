@@ -74,15 +74,14 @@ replacements:
   - source:
       kind: ConfigMap
       name: service-values
-      fieldPath: data.glance.default.replicas
+      fieldPath: data.glance.customServiceConfig
     targets:
       - select:
           kind: OpenStackControlPlane
         fieldPaths:
-          - spec.glance.template.glanceAPIs.default.replicas
+          - spec.glance.template.customServiceConfig
         options:
           create: true
-
   - source:
       kind: ConfigMap
       name: service-values
@@ -94,15 +93,3 @@ replacements:
           - spec.glance.template.glanceAPIs.default.replicas
         options:
           create: true
-
-#   - source:
-#      kind: ConfigMap
-#      name: service-values
-#      fieldPath: data.glance.customServiceConfig
-#    targets:
-#      - select:
-#          kind: OpenStackControlPlane
-#        fieldPaths:
-#          - spec.glance.template.customServiceConfig
-#        options:
-#          create: true

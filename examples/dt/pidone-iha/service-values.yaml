@@ -21,6 +21,13 @@ data:
         nas_host = 192.168.122.1
         nas_share_path = /data/cinder
   glance:
+    customServiceConfig: |
+      [DEFAULT]
+      enabled_backends = default_backend:file
+      [glance_store]
+      default_backend = default_backend
+      [default_backend]
+      filesystem_store_datadir = /var/lib/glance/images
     default:
       replicas: 1
   extraMounts:
