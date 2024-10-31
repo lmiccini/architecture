@@ -1,0 +1,786 @@
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: master-0
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.10
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.0.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.0.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.0.3
+          prefix-length: "32"
+        - ip: 172.17.0.5
+          prefix-length: "32"
+        - ip: 172.19.0.5
+          prefix-length: "32"
+        - ip: 172.18.0.5
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:13
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config:
+      - destination: 99.99.0.0/16
+        next-hop-address: 100.64.0.1
+        next-hop-interface: enp8s0
+      - destination: 99.99.0.0/16
+        next-hop-address: 100.65.0.1
+        next-hop-interface: enp9s0
+  nodeSelector:
+    kubernetes.io/hostname: master-0
+    node-role.kubernetes.io/master: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: master-1
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.11
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.1.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.1.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.1.3
+          prefix-length: "32"
+        - ip: 172.17.0.6
+          prefix-length: "32"
+        - ip: 172.19.0.6
+          prefix-length: "32"
+        - ip: 172.18.0.6
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:23
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config: []
+  nodeSelector:
+    kubernetes.io/hostname: master-1
+    node-role.kubernetes.io/master: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: master-2
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.12
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.2.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.2.10
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.2.3
+          prefix-length: "32"
+        - ip: 172.17.0.7
+          prefix-length: "32"
+        - ip: 172.19.0.7
+          prefix-length: "32"
+        - ip: 172.18.0.7
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:33
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config: []
+  nodeSelector:
+    kubernetes.io/hostname: master-2
+    node-role.kubernetes.io/master: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: worker-0
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.13
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.0.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.0.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.0.4
+          prefix-length: "32"
+        - ip: 172.17.0.8
+          prefix-length: "32"
+        - ip: 172.19.0.8
+          prefix-length: "32"
+        - ip: 172.18.0.8
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:14
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config: []
+  nodeSelector:
+    kubernetes.io/hostname: worker-0
+    node-role.kubernetes.io/worker: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: worker-1
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.14
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.1.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.1.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.1.4
+          prefix-length: "32"
+        - ip: 172.17.0.9
+          prefix-length: "32"
+        - ip: 172.19.0.9
+          prefix-length: "32"
+        - ip: 172.18.0.9
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:24
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config: []
+  nodeSelector:
+    kubernetes.io/hostname: worker-1
+    node-role.kubernetes.io/worker: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: worker-2
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.15
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.2.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: BGP interface 2
+      ipv4:
+        address:
+        - ip: 100.65.2.14
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp9s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.2.4
+          prefix-length: "32"
+        - ip: 172.17.0.10
+          prefix-length: "32"
+        - ip: 172.19.0.10
+          prefix-length: "32"
+        - ip: 172.18.0.10
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:34
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config: []
+  nodeSelector:
+    kubernetes.io/hostname: worker-2
+    node-role.kubernetes.io/worker: ""
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  labels:
+    osp/nncm-config-type: standard
+  name: worker-3
+  namespace: openstack
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server:
+        - 192.168.122.1
+    interfaces:
+    - description: ctlplane interface
+      mtu: 1500
+      name: enp7s0
+      state: up
+      type: ethernet
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: enp7s0
+          vlan: {}
+      description: linux-bridge over ctlplane interface
+      ipv4:
+        address:
+        - ip: 192.168.122.16
+          prefix-length: "24"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: ospbr
+      state: up
+      type: linux-bridge
+    - description: BGP interface 1
+      ipv4:
+        address:
+        - ip: 100.64.10.2
+          prefix-length: "30"
+        dhcp: false
+        enabled: true
+      ipv6:
+        enabled: false
+      mtu: 1500
+      name: enp8s0
+      state: up
+      type: ethernet
+    - description: loopback interface
+      ipv4:
+        address:
+        - ip: 99.99.10.2
+          prefix-length: "32"
+        - ip: 172.17.0.11
+          prefix-length: "32"
+        - ip: 172.19.0.11
+          prefix-length: "32"
+        - ip: 172.18.0.11
+          prefix-length: "32"
+        dhcp: false
+        enabled: true
+      ipv6:
+        address:
+        - ip: f00d:f00d:f00d:f00d:f00d:f00d:f00d:43
+          prefix-length: "128"
+        dhcp: false
+        enabled: true
+      mtu: 65536
+      name: lo
+      state: up
+    - description: Octavia vlan host interface
+      name: octavia
+      state: up
+      type: vlan
+      vlan:
+        base-iface: enp7s0
+        id: "23"
+    - bridge:
+        options:
+          stp:
+            enabled: false
+        port:
+        - name: octavia
+      description: Octavia bridge
+      mtu: 1500
+      name: octbr
+      type: linux-bridge
+    route-rules:
+      config: []
+    routes:
+      config:
+      - destination: 192.168.133.0/24
+        next-hop-address: 100.64.10.1
+        next-hop-interface: enp8s0
+  nodeSelector:
+    kubernetes.io/hostname: worker-3
+    node-role.kubernetes.io/worker: ""
