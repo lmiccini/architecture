@@ -1,0 +1,44 @@
+---
+apiVersion: nmstate.io/v1
+kind: NodeNetworkConfigurationPolicy
+metadata:
+  name: _ignored_
+spec:
+  desiredState:
+    dns-resolver:
+      config:
+        search: []
+        server: []
+    routes:
+      config: []
+    route-rules:
+      config: []
+    interfaces:
+      - description: ctlplane interface
+        name: _replaced_
+        state: up
+        type: ethernet
+        mtu: 1500      
+      - description: linux-bridge over ctlplane interface
+        ipv4:
+          address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+          enabled: true
+          dhcp: false
+        ipv6:
+          enabled: false
+        name: _replaced_
+        state: up
+        type: linux-bridge
+        bridge:
+          options:
+            stp:
+              enabled: false
+          port:
+            - name: _replaced_
+              vlan: {}
+        mtu: 1500
+  nodeSelector:
+    kubernetes.io/hostname: _replaced_
+    node-role.kubernetes.io/worker: ""
