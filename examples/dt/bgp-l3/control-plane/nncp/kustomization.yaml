@@ -1312,3 +1312,60 @@ replacements:
           name: master-0
         fieldPaths:
           - spec.desiredState.routes
+
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.routes
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-1
+        fieldPaths:
+          - spec.desiredState.routes
+
+
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.routes
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-2
+        fieldPaths:
+          - spec.desiredState.routes
+
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_3.routes
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-0
+        fieldPaths:
+          - spec.desiredState.routes
+
+
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_4.routes
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-1
+        fieldPaths:
+          - spec.desiredState.routes
+
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_5.routes
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-2
+        fieldPaths:
+          - spec.desiredState.routes
