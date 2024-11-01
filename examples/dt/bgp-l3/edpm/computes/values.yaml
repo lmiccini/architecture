@@ -56,7 +56,13 @@ data:
             domain: {{ dns_search_domains }}
             addresses:
               - ip_netmask: {{ ctlplane_ip }}/{{ ctlplane_cidr }}
-            routes: []
+            routes:
+              - destination: {{ bgpmainnet }}/16
+                next-hop-address: {{ edpm_frr_bgp_peers[0] }}
+                next-hop-interface: enp8s0
+              - destination: {{ bgpmainnet }}/16
+                next-hop-address: {{ edpm_frr_bgp_peers[1] }}
+                next-hop-interface: enp9s0
             members:
               - type: interface
                 name: nic2
