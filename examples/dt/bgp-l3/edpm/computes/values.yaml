@@ -83,9 +83,6 @@ data:
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpmainnet_ip') }}/32
             - ip_netmask: {{ lookup('vars', 'bgpmainnetv6_ip') }}/128
-            #- ip_netmask: {{ lookup('vars', 'internalapi_ip') }}/32
-            #- ip_netmask: {{ lookup('vars', 'storage_ip') }}/32
-            #- ip_netmask: {{ lookup('vars', 'tenant_ip') }}/32
         edpm_nodes_validation_validate_controllers_icmp: false
         edpm_nodes_validation_validate_gateway_icmp: false
         edpm_sshd_allowed_ranges:
