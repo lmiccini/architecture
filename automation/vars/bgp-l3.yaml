@@ -47,7 +47,7 @@ vas:
         wait_conditions:
           - >-
             oc -n openstack wait openstackdataplanenodeset
-            openstack-edpm
+            networker-nodes
             --for condition=SetupReady
             --timeout=600s
         values:
