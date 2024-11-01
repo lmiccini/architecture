@@ -18,8 +18,8 @@ transformers:
       create: true
 
 components:
-  #- ../../../../../../lib/nncp-l3
   - ../../../../../lib/nncp-l3
+  #- ../../../../../lib/nncp
 
 resources:
   - values.yaml
@@ -435,7 +435,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_0.loopback_ip.0
+      fieldPath: data.node_0.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -446,7 +446,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_0.loopback_ip.1
+      fieldPath: data.node_0.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -456,7 +456,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_0.loopback_ip.2
+      fieldPath: data.node_0.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -466,7 +466,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_0.loopback_ip.3
+      fieldPath: data.node_0.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -508,7 +508,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_1.loopback_ip.0
+      fieldPath: data.node_1.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -519,7 +519,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_1.loopback_ip.1
+      fieldPath: data.node_1.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -529,7 +529,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_1.loopback_ip.2
+      fieldPath: data.node_1.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -539,7 +539,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_1.loopback_ip.3
+      fieldPath: data.node_1.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -583,7 +583,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_2.loopback_ip.0
+      fieldPath: data.node_2.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -594,7 +594,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_2.loopback_ip.1
+      fieldPath: data.node_2.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -604,7 +604,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_2.loopback_ip.2
+      fieldPath: data.node_2.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -614,7 +614,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_2.loopback_ip.3
+      fieldPath: data.node_2.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -657,7 +657,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_3.loopback_ip.0
+      fieldPath: data.node_3.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -668,7 +668,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_3.loopback_ip.1
+      fieldPath: data.node_3.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -678,7 +678,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_3.loopback_ip.2
+      fieldPath: data.node_3.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -688,7 +688,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_3.loopback_ip.3
+      fieldPath: data.node_3.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -731,7 +731,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_4.loopback_ip.0
+      fieldPath: data.node_4.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -742,7 +742,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_4.loopback_ip.1
+      fieldPath: data.node_4.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -752,7 +752,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_4.loopback_ip.2
+      fieldPath: data.node_4.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -762,7 +762,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_4.loopback_ip.3
+      fieldPath: data.node_4.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -805,7 +805,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_5.loopback_ip.0
+      fieldPath: data.node_5.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -816,7 +816,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_5.loopback_ip.1
+      fieldPath: data.node_5.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -826,7 +826,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_5.loopback_ip.2
+      fieldPath: data.node_5.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -836,7 +836,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_5.loopback_ip.3
+      fieldPath: data.node_5.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -869,7 +869,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_6.loopback_ip.0
+      fieldPath: data.node_6.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -880,7 +880,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_6.loopback_ip.1
+      fieldPath: data.node_6.internalapi_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -890,7 +890,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_6.loopback_ip.2
+      fieldPath: data.node_6.storage_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -900,7 +900,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_6.loopback_ip.3
+      fieldPath: data.node_6.tenant_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
