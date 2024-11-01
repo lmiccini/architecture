@@ -58,11 +58,9 @@ data:
               - ip_netmask: {{ ctlplane_ip }}/{{ ctlplane_cidr }}
             routes:
               - destination: 99.99.0.0/16
-                next-hop-address: {{ edpm_frr_bgp_peers[0] }}
-                next-hop-interface: enp8s0
+                next_hop: {{ edpm_frr_bgp_peers[0] }}
               - destination: 99.99.0.0/16
-                next-hop-address: {{ edpm_frr_bgp_peers[1] }}
-                next-hop-interface: enp9s0
+                next_hop: {{ edpm_frr_bgp_peers[1] }}
             members:
               - type: interface
                 name: nic2
