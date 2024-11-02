@@ -379,7 +379,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.internalapi.prefix-length
+      fieldPath: data.loopback.prefix-length
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -388,7 +388,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.tenant.prefix-length
+      fieldPath: data.loopback.prefix-length
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -397,7 +397,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.storage.prefix-length
+      fieldPath: data.loopback.prefix-length
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
