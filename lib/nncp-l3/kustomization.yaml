@@ -12,6 +12,88 @@ patches:
     path: ocp_node_template.yaml
 
 replacements:
+#  # Common network interfaces and vlans
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.internalapi.base_iface
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=internalapi].vlan.base-iface
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.internalapi.vlan
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=internalapi].vlan.id
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.internalapi.mtu
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=internalapi].mtu
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.tenant.base_iface
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=tenant].vlan.base-iface
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.tenant.vlan
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=tenant].vlan.id
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.tenant.mtu
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=tenant].mtu
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.storage.base_iface
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=storage].vlan.base-iface
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.storage.vlan
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=storage].vlan.id
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.storage.mtu
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=storage].mtu
   # ctlplane type is ethernet (not vlan)
   - source:
       kind: ConfigMap
@@ -22,7 +104,7 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
         fieldPaths:
           - spec.desiredState.interfaces.[type=ethernet].name
-          - spec.desiredState.interfaces.[type=linux-bridge].bridge.port.0.name
+          - spec.desiredState.interfaces.[name=ospbr].bridge.port.0.name
   - source:
       kind: ConfigMap
       name: network-values
@@ -32,29 +114,29 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
         fieldPaths:
           - spec.desiredState.interfaces.[type=ethernet].mtu
-          - spec.desiredState.interfaces.[type=linux-bridge].mtu
+          - spec.desiredState.interfaces.[name=ospbr].mtu
 
-#  # Static Node IPs: node-0
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_0.internalapi_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_0.tenant_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
+  # Static Node IPs: node-0
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.internalapi_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.tenant_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -64,39 +146,39 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-0
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_0.storage_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
-#
-#  # Static Node IPs: node-1
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_1.internalapi_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_1.tenant_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.storage_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
+
+  # Static Node IPs: node-1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.internalapi_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.tenant_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -106,39 +188,39 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-1
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_1.storage_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
-#
-#  # Static Node IPs: node-2
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_2.internalapi_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_2.tenant_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.storage_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
+
+  # Static Node IPs: node-2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.internalapi_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.tenant_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -148,17 +230,17 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-2
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.node_2.storage_ip
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.storage_ip
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.ip
 
   # prefix-length: node-0
   - source:
@@ -170,37 +252,37 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-0
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.internalapi.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.tenant.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.storage.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-0
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.internalapi.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.tenant.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.storage.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-0
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
 
   # prefix-length: node-1
   - source:
@@ -212,37 +294,37 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-1
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.internalapi.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.tenant.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.storage.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-1
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.internalapi.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.tenant.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.storage.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-1
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
 
   # prefix-length: node-2
   - source:
@@ -254,37 +336,37 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-2
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.internalapi.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.tenant.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
-#  - source:
-#      kind: ConfigMap
-#      name: network-values
-#      fieldPath: data.storage.prefix-length
-#    targets:
-#      - select:
-#          kind: NodeNetworkConfigurationPolicy
-#          name: node-2
-#        fieldPaths:
-#          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.internalapi.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=internalapi].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.tenant.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=tenant].ipv4.address.0.prefix-length
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.storage.prefix-length
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: node-2
+        fieldPaths:
+          - spec.desiredState.interfaces.[name=storage].ipv4.address.0.prefix-length
 
   # Node names
   - source:
@@ -342,12 +424,12 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
         fieldPaths:
           - spec.desiredState.routes
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.bridgeName
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-        fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].name
+            #  - source:
+            #      kind: ConfigMap
+            #      name: network-values
+            #      fieldPath: data.bridgeName
+            #    targets:
+            #      - select:
+            #          kind: NodeNetworkConfigurationPolicy
+            #        fieldPaths:
+            #          - spec.desiredState.interfaces.[type=linux-bridge].name

@@ -14,11 +14,50 @@ spec:
     route-rules:
       config: []
     interfaces:
+      - description: internalapi bridge
+        ipv4:
+          address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+          enabled: true
+          dhcp: false
+        ipv6:
+          enabled: false
+        name: internalapi
+        state: up
+        type: linux-bridge
+        mtu: 1500
+      - description: storage bridge
+        ipv4:
+          address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+          enabled: true
+          dhcp: false
+        ipv6:
+          enabled: false
+        name: storage
+        state: up
+        type: linux-bridge
+        mtu: 1500
+      - description: tenant bridge
+        ipv4:
+          address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+          enabled: true
+          dhcp: false
+        ipv6:
+          enabled: false
+        name: tenant
+        state: up
+        type: linux-bridge
+        mtu: 1500
       - description: ctlplane interface
         name: _replaced_
         state: up
         type: ethernet
-        mtu: 1500      
+        mtu: 1500
       - description: linux-bridge over ctlplane interface
         ipv4:
           address:
@@ -28,7 +67,7 @@ spec:
           dhcp: false
         ipv6:
           enabled: false
-        name: _replaced_
+        name: ospbr
         state: up
         type: linux-bridge
         bridge:
