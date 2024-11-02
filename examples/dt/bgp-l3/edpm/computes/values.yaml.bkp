@@ -71,11 +71,17 @@ data:
             use_dhcp: false
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpnet0_ip') }}/30
+            routes:
+              - destination: 99.99.0.0/16
+                next_hop: {{ edpm_frr_bgp_peers[0] }}
           - type: interface
             name: nic4
             use_dhcp: false
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpnet1_ip') }}/30
+            routes:
+              - destination: 99.99.0.0/16
+                next_hop: {{ edpm_frr_bgp_peers[1] }}
           - type: interface
             name: lo
             addresses:
