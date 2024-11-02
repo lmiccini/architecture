@@ -163,10 +163,10 @@ data:
             subnetName: subnet0
             fixedIP: 100.65.0.6
           - name: Bgpmainnet
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: 99.99.0.3
           - name: BgpmainnetV6
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0013
       edpm-networker-1:
         hostName: edpm-networker-1
@@ -231,10 +231,10 @@ data:
             subnetName: subnet2
             fixedIP: 100.65.2.6
           - name: Bgpmainnet
-            subnetName: subnet1
+            subnetName: subnet2
             fixedIP: 99.99.2.3
           - name: BgpmainnetV6
-            subnetName: subnet1
+            subnetName: subnet2
             fixedIP: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0033
     services:
       - download-cache
