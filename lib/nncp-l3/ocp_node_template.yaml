@@ -70,6 +70,13 @@ spec:
         name: ospbr
         state: up
         type: linux-bridge
+        bridge:
+          options:
+            stp:
+              enabled: false
+          port:
+            - name: _replaced_
+              vlan: {}
         mtu: 1500
   nodeSelector:
     kubernetes.io/hostname: _replaced_
