@@ -227,7 +227,7 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: worker-0
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -269,7 +269,7 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: worker-1
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -311,7 +311,7 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: worker-2
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -353,7 +353,7 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: worker-3
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.ip
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.ip
   - source:
       kind: ConfigMap
       name: network-values
@@ -375,7 +375,7 @@ replacements:
       - select:
           kind: NodeNetworkConfigurationPolicy
         fieldPaths:
-          - spec.desiredState.interfaces.[type=linux-bridge].ipv4.address.0.prefix-length
+          - spec.desiredState.interfaces.[name=ospbr].ipv4.address.0.prefix-length
   - source:
       kind: ConfigMap
       name: network-values
