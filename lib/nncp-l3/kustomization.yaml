@@ -104,17 +104,17 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
         fieldPaths:
           - spec.desiredState.interfaces.[type=ethernet].name
-          - spec.desiredState.interfaces.[name=ospbr].bridge.port.0.name
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.ctlplane.mtu
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-        fieldPaths:
-          - spec.desiredState.interfaces.[type=ethernet].mtu
-          - spec.desiredState.interfaces.[name=ospbr].mtu
+#          - spec.desiredState.interfaces.[name=ospbr].bridge.port.0.name
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.ctlplane.mtu
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[type=ethernet].mtu
+#          - spec.desiredState.interfaces.[name=ospbr].mtu
 
   # Static Node IPs: node-0
   - source:
