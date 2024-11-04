@@ -57,9 +57,6 @@ data:
 
   ovn:
     ovnController:
-      nicMappings:
-        datacentre: ocpbr
-        octavia: octbr
       external-ids:
         enable-chassis-as-gateway: false
   neutron:
