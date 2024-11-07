@@ -29,7 +29,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_1:
     name: master-1
     internalapi_ip: 172.17.0.6
@@ -51,7 +51,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.1.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_2:
     name: master-2
     internalapi_ip: 172.17.0.7
@@ -73,7 +73,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_3:
     name: worker-0
     internalapi_ip: 172.17.0.8
@@ -95,7 +95,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_4:
     name: worker-1
     internalapi_ip: 172.17.0.9
@@ -117,7 +117,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.1.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_5:
     name: worker-2
     internalapi_ip: 172.17.0.10
@@ -139,7 +139,7 @@ data:
           next-hop-interface: enp8s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.1
-          next-hop-interface: enp9s0    
+          next-hop-interface: enp9s0
   node_6:
     name: worker-3
     internalapi_ip: 172.17.0.11
@@ -184,8 +184,12 @@ data:
       {
         "cniVersion": "0.3.1",
         "name": "ctlplane",
-        "type": "macvlan",
-        "master": "ospbr",
+        "type": "bridge",
+        "bridge": "ctlplane",
+        "isDefaultGateway": true,
+        "forceAddress": false,
+        "ipMasq": true,
+        "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
           "range": "192.168.122.0/24",
@@ -217,8 +221,12 @@ data:
       {
         "cniVersion": "0.3.1",
         "name": "internalapi",
-        "type": "macvlan",
-        "master": "internalapi",
+        "type": "bridge",
+        "bridge": "internalapi",
+        "isDefaultGateway": true,
+        "forceAddress": false,
+        "ipMasq": true,
+        "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
           "range": "172.17.0.0/24",
@@ -246,8 +254,12 @@ data:
       {
         "cniVersion": "0.3.1",
         "name": "storage",
-        "type": "macvlan",
-        "master": "storage",
+        "type": "bridge",
+        "bridge": "storage",
+        "isDefaultGateway": true,
+        "forceAddress": false,
+        "ipMasq": true,
+        "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
           "range": "172.18.0.0/24",
@@ -275,8 +287,12 @@ data:
       {
         "cniVersion": "0.3.1",
         "name": "tenant",
-        "type": "macvlan",
-        "master": "tenant",
+        "type": "bridge",
+        "bridge": "tenant",
+        "isDefaultGateway": true,
+        "forceAddress": false,
+        "ipMasq": true,
+        "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
           "range": "172.19.0.0/24",
@@ -440,7 +456,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node1:
         bgpnet0:
           bgp_peer: 100.64.1.9
@@ -455,7 +471,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node2:
         bgpnet0:
           bgp_peer: 100.64.2.9
@@ -470,7 +486,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node3:
         bgpnet0:
           bgp_peer: 100.64.0.13
@@ -485,7 +501,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node4:
         bgpnet0:
           bgp_peer: 100.64.1.13
@@ -500,7 +516,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node5:
         bgpnet0:
           bgp_peer: 100.64.2.13
@@ -515,7 +531,7 @@ data:
               next-hop-interface: enp8s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.1
-              next-hop-interface: enp9s0      
+              next-hop-interface: enp9s0
       node6:
         bgpnet0:
           bgp_peer: 100.64.10.1
