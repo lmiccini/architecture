@@ -15,7 +15,6 @@ spec:
       config: []
     interfaces:
       - description: internalapi bridge
-        ipv4:
         name: internalapi
         state: up
         type: linux-bridge
@@ -35,6 +34,16 @@ spec:
         state: up
         type: linux-bridge
         mtu: 1500
+      - description: ctlplane interface
+        name: _replaced_
+        state: up
+        type: ethernet
+        mtu: 1500
+        ipv4:
+          enabled: true
+          dhcp: false
+        ipv6:
+          enabled: false
   nodeSelector:
     kubernetes.io/hostname: _replaced_
     node-role.kubernetes.io/worker: ""
