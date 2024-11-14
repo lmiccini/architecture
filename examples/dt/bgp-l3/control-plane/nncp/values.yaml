@@ -26,10 +26,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.0.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_1:
     name: master-1
     internalapi_ip: 172.17.0.6
@@ -48,10 +48,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.1.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.1.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_2:
     name: master-2
     internalapi_ip: 172.17.0.7
@@ -70,10 +70,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.2.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_3:
     name: worker-0
     internalapi_ip: 172.17.0.8
@@ -92,10 +92,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.0.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_4:
     name: worker-1
     internalapi_ip: 172.17.0.9
@@ -114,10 +114,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.1.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.1.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_5:
     name: worker-2
     internalapi_ip: 172.17.0.10
@@ -136,10 +136,10 @@ data:
       config:
         - destination: 99.99.0.0/16
           next-hop-address: 100.64.2.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.1
-          next-hop-interface: enp9s0
+          next-hop-interface: enp8s0
   node_6:
     name: worker-3
     internalapi_ip: 172.17.0.11
@@ -157,7 +157,7 @@ data:
       config:
         - destination: 192.168.133.0/24
           next-hop-address: 100.64.10.1
-          next-hop-interface: enp8s0
+          next-hop-interface: enp7s0
 
   # networks
   ctlplane:
@@ -437,8 +437,8 @@ data:
   bgp:
     prefix-length: 30
     ifaces:
+      - enp7s0
       - enp8s0
-      - enp9s0
     asn: 64999
     peer_asn: 64999
     subnets:
@@ -552,10 +552,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.0.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node1:
         bgpnet0:
           bgp_peer: 100.64.1.9
@@ -567,10 +567,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.1.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node2:
         bgpnet0:
           bgp_peer: 100.64.2.9
@@ -582,10 +582,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.2.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node3:
         bgpnet0:
           bgp_peer: 100.64.0.13
@@ -597,10 +597,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.0.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node4:
         bgpnet0:
           bgp_peer: 100.64.1.13
@@ -612,10 +612,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.1.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node5:
         bgpnet0:
           bgp_peer: 100.64.2.13
@@ -627,10 +627,10 @@ data:
           config:
             - destination: 99.99.0.0/16
               next-hop-address: 100.64.2.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.1
-              next-hop-interface: enp9s0
+              next-hop-interface: enp8s0
       node6:
         bgpnet0:
           bgp_peer: 100.64.10.1
@@ -639,14 +639,14 @@ data:
           config:
             - destination: 192.168.133.0/24
               next-hop-address: 100.64.10.1
-              next-hop-interface: enp8s0
+              next-hop-interface: enp7s0
     net-attach-def:
       node6: |
         {
           "cniVersion": "0.3.1",
           "name": "bgpnet-worker-3",
           "type": "host-device",
-          "device": "enp8s0",
+          "device": "enp7s0",
           "ipam": {
             "type": "whereabouts",
             "range": "100.64.10.0/30",
