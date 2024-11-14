@@ -94,16 +94,16 @@ replacements:
 #          kind: NodeNetworkConfigurationPolicy
 #        fieldPaths:
 #          - spec.desiredState.interfaces.[name=storage].mtu
-  # ctlplane type is ethernet (not vlan)
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.ctlplane.iface
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-        fieldPaths:
-          - spec.desiredState.interfaces.[type=ethernet].name
+#  # ctlplane type is ethernet (not vlan)
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.ctlplane.iface
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[type=ethernet].name
 #          - spec.desiredState.interfaces.[name=ospbr].bridge.port.0.name
 #  - source:
 #      kind: ConfigMap
