@@ -12,7 +12,7 @@ data:
     # Authorized keys that will have access to the dataplane computes via SSH
     authorized: CHANGEME
     # The private key that will have access to the dataplane computes via SSH
-    private: CHANGEME2
+    private: CHANGEME3
     # The public key that will have access to the dataplane computes via SSH
     public: CHANGEME3
   nodeset:
@@ -26,8 +26,8 @@ data:
         edpm_frr_bgp_ipv6_src_network: bgpmainnetv6
         edpm_frr_bgp_neighbor_password: f00barZ
         edpm_frr_bgp_uplinks:
+          - nic2
           - nic3
-          - nic4
         timesync_ntp_servers:
           - hostname: pool.ntp.org
         # conntrack is necessary for some tobiko tests
@@ -55,22 +55,16 @@ data:
           - type: interface
             name: nic1
             use_dhcp: true
+            dns_servers: {{ ctlplane_dns_nameservers }}
+            domain: {{ dns_search_domains }}
             defroute: false
           - type: interface
             name: nic2
             use_dhcp: false
-            defroute: false
-            dns_servers: {{ ctlplane_dns_nameservers }}
-            domain: {{ dns_search_domains }}
-            addresses:
-              - ip_netmask: {{ ctlplane_ip }}/{{ ctlplane_cidr }}
-          - type: interface
-            name: nic3
-            use_dhcp: false
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpnet0_ip') }}/30
           - type: interface
-            name: nic4
+            name: nic3
             use_dhcp: false
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpnet1_ip') }}/30
@@ -79,6 +73,7 @@ data:
             addresses:
             - ip_netmask: {{ lookup('vars', 'bgpmainnet_ip') }}/32
             - ip_netmask: {{ lookup('vars', 'bgpmainnetv6_ip') }}/128
+            - ip_netmask: {{ lookup('vars', 'ctlplane_ip') }}/32
             - ip_netmask: {{ lookup('vars', 'internalapi_ip') }}/32
             - ip_netmask: {{ lookup('vars', 'storage_ip') }}/32
             - ip_netmask: {{ lookup('vars', 'tenant_ip') }}/32
@@ -86,6 +81,10 @@ data:
         edpm_nodes_validation_validate_gateway_icmp: false
         edpm_sshd_allowed_ranges:
           - 192.168.122.0/24
+          - 192.168.125.0/24
+          - 100.64.0.0/16
+          - 100.65.0.0/16
+          - 99.99.0.0/16
         edpm_sshd_configure_firewall: true
         gather_facts: false
         neutron_physical_bridge_name: br-ex
@@ -228,6 +227,7 @@ data:
             subnetName: subnet1
             fixedIP: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0033
     services:
+      - download-cache
       - bootstrap
       - configure-network
       - validate-network
