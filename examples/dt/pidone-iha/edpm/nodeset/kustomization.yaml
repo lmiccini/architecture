@@ -8,16 +8,16 @@ components:
 resources:
   - values.yaml
 
-patches:
-  - target:
-      kind: OpenStackDataPlaneNodeSet
-      name: openstack-edpm
-    patch: |-
-      - op: add
-        path: /spec/nodeTemplate/ansible/ansibleVars/edpm_extra_mounts
-        value:
-          - fstype: nfs4
-            name: /var/lib/nova/instances
-            path: /var/lib/nova/instances
-            opts: context=system_u:object_r:nfs_t:s0
-            src: 192.168.122.1:/data/nova
+#patches:
+#  - target:
+#      kind: OpenStackDataPlaneNodeSet
+#      name: openstack-edpm
+#    patch: |-
+#      - op: add
+#        path: /spec/nodeTemplate/ansible/ansibleVars/edpm_extra_mounts
+#        value:
+#          - fstype: nfs4
+#            name: /var/lib/nova/instances
+#            path: /var/lib/nova/instances
+#            opts: context=system_u:object_r:nfs_t:s0
+#            src: 192.168.122.1:/data/nova
