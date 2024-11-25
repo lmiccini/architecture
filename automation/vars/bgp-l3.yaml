@@ -43,17 +43,17 @@ vas:
             src_file: service-values.yaml
         build_output: control-plane.yaml
 
-      - path: examples/dt/bgp-l3/edpm/networkers
-        wait_conditions:
-          - >-
-            oc -n openstack wait openstackdataplanenodeset
-            networker-nodes
-            --for condition=SetupReady
-            --timeout=600s
-        values:
-          - name: edpm-networker-nodeset-values
-            src_file: values.yaml
-        build_output: edpm-networker-nodeset.yaml
+      #- path: examples/dt/bgp-l3/edpm/networkers
+      #  wait_conditions:
+      #    - >-
+      #      oc -n openstack wait openstackdataplanenodeset
+      #      networker-nodes
+      #      --for condition=SetupReady
+      #      --timeout=600s
+      #  values:
+      #    - name: edpm-networker-nodeset-values
+      #      src_file: values.yaml
+      #  build_output: edpm-networker-nodeset.yaml
 
       - path: examples/dt/bgp-l3/edpm/computes
         wait_conditions:
@@ -67,14 +67,14 @@ vas:
             src_file: values.yaml
         build_output: edpm-compute-nodeset.yaml
 
-      - path: examples/dt/bgp-l3/edpm/deployment
-        wait_conditions:
-          - >-
-            oc -n openstack wait openstackdataplanedeployment
-            edpm-deployment
-            --for condition=Ready
-            --timeout=3800s
-        values:
-          - name: edpm-deployment-values
-            src_file: values.yaml
-        build_output: edpm-deployment.yaml
+      #- path: examples/dt/bgp-l3/edpm/deployment
+      #  wait_conditions:
+      #    - >-
+      #      oc -n openstack wait openstackdataplanedeployment
+      #      edpm-deployment
+      #      --for condition=Ready
+      #      --timeout=3800s
+      #  values:
+      #    - name: edpm-deployment-values
+      #      src_file: values.yaml
+      #  build_output: edpm-deployment.yaml
