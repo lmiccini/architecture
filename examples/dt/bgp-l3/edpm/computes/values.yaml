@@ -154,10 +154,10 @@ data:
             subnetName: subnet0
             fixedIP: 100.65.0.2
           - name: Bgpmainnet
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: 99.99.0.2
           - name: BgpmainnetV6
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0012
       edpm-compute-1:
         hostName: edpm-compute-1
@@ -182,16 +182,16 @@ data:
           - name: Tenant
             subnetName: subnet1
           - name: Bgpnet0
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: 100.64.0.6
           - name: Bgpnet1
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: 100.65.0.6
           - name: Bgpmainnet
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: 99.99.0.3
           - name: BgpmainnetV6
-            subnetName: subnet1
+            subnetName: subnet0
             fixedIP: f00d:f00d:f00d:f00d:f00d:f00d:f00d:0013
       edpm-compute-2:
         hostName: edpm-compute-2
