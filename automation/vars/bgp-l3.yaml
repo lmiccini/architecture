@@ -55,17 +55,17 @@ vas:
       #      src_file: values.yaml
       #  build_output: edpm-networker-nodeset.yaml
 
-      - path: examples/dt/bgp-l3/edpm/computes
-        wait_conditions:
-          - >-
-            oc -n openstack wait openstackdataplanenodeset
-            compute-nodes
-            --for condition=SetupReady
-            --timeout=600s
-        values:
-          - name: edpm-compute-nodeset-values
-            src_file: values.yaml
-        build_output: edpm-compute-nodeset.yaml
+      #- path: examples/dt/bgp-l3/edpm/computes
+      #  wait_conditions:
+      #    - >-
+      #      oc -n openstack wait openstackdataplanenodeset
+      #      compute-nodes
+      #      --for condition=SetupReady
+      #      --timeout=600s
+      #  values:
+      #    - name: edpm-compute-nodeset-values
+      #      src_file: values.yaml
+      #  build_output: edpm-compute-nodeset.yaml
 
       #- path: examples/dt/bgp-l3/edpm/deployment
       #  wait_conditions:
