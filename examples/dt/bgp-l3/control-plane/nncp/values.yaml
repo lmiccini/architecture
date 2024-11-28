@@ -172,36 +172,36 @@ data:
         gateway: 192.168.122.1
         name: subnet1
         routes:
-            - destination: 192.168.133.0/24
+            - destination: 192.168.123.0/24
               nexthop: 192.168.122.1
-            - destination: 192.168.144.0/24
+            - destination: 192.168.124.0/24
               nexthop: 192.168.122.1
       - allocationRanges:
-            - end: 192.168.133.120
-              start: 192.168.133.100
-            - end: 192.168.133.170
-              start: 192.168.133.150
-        cidr: 192.168.133.0/24
-        gateway: 192.168.133.1
+            - end: 192.168.123.120
+              start: 192.168.123.100
+            - end: 192.168.123.170
+              start: 192.168.123.150
+        cidr: 192.168.123.0/24
+        gateway: 192.168.123.1
         name: subnet2
         routes:
             - destination: 192.168.122.0/24
-              nexthop: 192.168.133.1
-            - destination: 192.168.144.0/24
-              nexthop: 192.168.133.1ØØ
+              nexthop: 192.168.123.1
+            - destination: 192.168.124.0/24
+              nexthop: 192.168.123.1ØØ
       - allocationRanges:
-            - end: 192.168.144.120
-              start: 192.168.144.100
-            - end: 192.168.144.170
-              start: 192.168.144.150
-        cidr: 192.168.144.0/24
-        gateway: 192.168.144.1
+            - end: 192.168.124.120
+              start: 192.168.124.100
+            - end: 192.168.124.170
+              start: 192.168.124.150
+        cidr: 192.168.124.0/24
+        gateway: 192.168.124.1
         name: subnet3
         routes:
             - destination: 192.168.122.0/24
-              nexthop: 192.168.144.1
-            - destination: 192.168.133.0/24
-              nexthop: 192.168.144.1
+              nexthop: 192.168.124.1
+            - destination: 192.168.123.0/24
+              nexthop: 192.168.124.1
     prefix-length: 24
     iface: enp7s0
     mtu: 1500
@@ -234,10 +234,10 @@ data:
         endpoint_annotations:
             metallb.universe.tf/address-pool: ctlplaner1
             metallb.universe.tf/allow-shared-ip: ctlplaner1
-            metallb.universe.tf/loadBalancerIPs: 192.168.133.80
+            metallb.universe.tf/loadBalancerIPs: 192.168.123.80
         iface: eth1
         lb_addresses:
-            - 192.168.133.80-192.168.133.90
+            - 192.168.123.80-192.168.123.90
         mtu: 1500
         net-attach-def: |
             {
@@ -247,30 +247,30 @@ data:
               "master": "eth1",
               "ipam": {
                 "type": "whereabouts",
-                "range": "192.168.133.0/24",
-                "range_start": "192.168.133.30",
-                "range_end": "192.168.133.70"
+                "range": "192.168.123.0/24",
+                "range_start": "192.168.123.30",
+                "range_end": "192.168.123.70"
               }
             }
         prefix-length: 24
         subnets:
             - allocationRanges:
-                  - end: 192.168.133.120
-                    start: 192.168.133.100
-                  - end: 192.168.133.170
-                    start: 192.168.133.150
-              cidr: 192.168.133.0/24
-              gateway: 192.168.133.1
+                  - end: 192.168.123.120
+                    start: 192.168.123.100
+                  - end: 192.168.123.170
+                    start: 192.168.123.150
+              cidr: 192.168.123.0/24
+              gateway: 192.168.123.1
               name: subnet1
     ctlplaner2:
         dnsDomain: ctlplaner2.example.com
         endpoint_annotations:
             metallb.universe.tf/address-pool: ctlplaner2
             metallb.universe.tf/allow-shared-ip: ctlplaner2
-            metallb.universe.tf/loadBalancerIPs: 192.168.144.80
+            metallb.universe.tf/loadBalancerIPs: 192.168.124.80
         iface: eth1
         lb_addresses:
-            - 192.168.144.80-192.168.144.90
+            - 192.168.124.80-192.168.124.90
         mtu: 1500
         net-attach-def: |
             {
@@ -280,20 +280,20 @@ data:
               "master": "eth1",
               "ipam": {
                 "type": "whereabouts",
-                "range": "192.168.144.0/24",
-                "range_start": "192.168.144.30",
-                "range_end": "192.168.144.70"
+                "range": "192.168.124.0/24",
+                "range_start": "192.168.124.30",
+                "range_end": "192.168.124.70"
               }
             }
         prefix-length: 24
         subnets:
             - allocationRanges:
-                  - end: 192.168.144.120
-                    start: 192.168.144.100
-                  - end: 192.168.144.170
-                    start: 192.168.144.150
-              cidr: 192.168.144.0/24
-              gateway: 192.168.144.1
+                  - end: 192.168.124.120
+                    start: 192.168.124.100
+                  - end: 192.168.124.170
+                    start: 192.168.124.150
+              cidr: 192.168.124.0/24
+              gateway: 192.168.124.1
               name: subnet1
 
   internalapi:
