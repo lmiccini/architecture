@@ -865,10 +865,10 @@ data:
               next-hop-address: 100.64.10.1
               next-hop-interface: enp8s0
     net-attach-def:
-      node6: |
+      node12: |
         {
           "cniVersion": "0.3.1",
-          "name": "bgpnet-worker-3",
+          "name": "bgpnet-worker-9",
           "type": "host-device",
           "device": "enp8s0",
           "ipam": {
