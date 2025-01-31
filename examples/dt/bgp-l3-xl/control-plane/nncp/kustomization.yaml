@@ -47,7 +47,7 @@ patches:
           type: ethernet
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: "master-.*"  # node-6 does not need a second BGP interface
+      name: "master-.*"
     patch: |-
       - op: add
         path: /spec/desiredState/interfaces/-
@@ -67,7 +67,47 @@ patches:
           type: ethernet
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: "node-[3-11]"  # node-12 does not need a second BGP interface
+      name: "node-[3-9]"
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: BGP interface 2
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1500
+          name: _replaced_
+          state: up
+          type: ethernet
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+      name: "node-10"
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: BGP interface 2
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: _replaced_
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1500
+          name: _replaced_
+          state: up
+          type: ethernet
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+      name: "node-11"
     patch: |-
       - op: add
         path: /spec/desiredState/interfaces/-
