@@ -859,6 +859,9 @@ data:
         bgpnet0:
           bgp_peer: 100.64.10.1
           bgp_ip: 100.64.10.2
+        bgpnet1: #test
+          bgp_peer: 0.0.0.0 #test
+          bgp_ip: 0.0.0.0 #test
         routes:
           config:
             - destination: 192.168.133.0/24
