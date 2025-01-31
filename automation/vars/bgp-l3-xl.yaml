@@ -3,7 +3,7 @@ vas:
   bgp-l3:
     stages:
       - pre_stage_run:
-          - name: Apply taint on worker-3
+          - name: Apply taint on worker-9
             type: cr
             definition:
               spec:
@@ -15,9 +15,9 @@ vas:
                     key: testOperator
                     value: 'true'
             kind: Node
-            resource_name: worker-3
+            resource_name: worker-9
             state: patched
-        path: examples/dt/bgp-l3/control-plane/nncp
+        path: examples/dt/bgp-l3-xl/control-plane/nncp
         wait_conditions:
           - >-
             oc -n openstack wait nncp
@@ -29,7 +29,7 @@ vas:
             src_file: values.yaml
         build_output: nncp.yaml
 
-      - path: examples/dt/bgp-l3/control-plane
+      - path: examples/dt/bgp-l3-xl/control-plane
         wait_conditions:
           - >-
             oc -n openstack wait openstackcontrolplane
