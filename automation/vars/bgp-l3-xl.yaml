@@ -1,6 +1,6 @@
 ---
 vas:
-  bgp-l3:
+  bgp-l3-xl:
     stages:
       - pre_stage_run:
           - name: Apply taint on worker-9
