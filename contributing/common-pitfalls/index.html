@@ -12,13 +12,9 @@
         <meta name="author" content="OpenStack Team">
       
       
-        <link rel="canonical" href="https://openstack-k8s-operators.github.io/architecture/contributing/pull-request-testing/">
+        <link rel="canonical" href="https://openstack-k8s-operators.github.io/architecture/contributing/common-pitfalls/">
       
       
-        <link rel="prev" href="../documentation/">
-      
-      
-        <link rel="next" href="../cherry-picking/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +22,7 @@
     
     
       
-        <title>Opening pull requests - OpenStack K8S Operators Architectures</title>
+        <title>Common Design Pitfalls - OpenStack K8S Operators Architectures</title>
       
     
     
@@ -78,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#opening-pull-requests" class="md-skip">
+        <a href="#common-design-pitfalls" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Opening pull requests
+              Common Design Pitfalls
             
           </span>
         </div>
@@ -523,19 +519,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -550,7 +544,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Contributing
@@ -583,31 +577,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Opening pull requests
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../pull-request-testing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -617,35 +590,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-reproducer-role" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using the reproducer role
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -707,9 +651,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-the-reproducer-role" class="md-nav__link">
+  <a href="#accidental-openstackcontrolplane-overwrites" class="md-nav__link">
     <span class="md-ellipsis">
-      Using the reproducer role
+      Accidental OpenStackControlPlane Overwrites
     </span>
   </a>
   
@@ -734,50 +678,69 @@
   
 
 
-<h1 id="opening-pull-requests">Opening pull requests<a class="headerlink" href="#opening-pull-requests" title="Permanent link">#</a></h1>
-<p>Contributions to the <code>architecture</code> repository are always welcomed and
-encouraged. In order to avoid causing regressions to the repository and to
-prove that the contributions are working as intended, all pull requests are
-expected to provide proof of validation.</p>
-<p>The simplest way is to use the reproducer functionality in the
-<a href="https://ci-framework.readthedocs.io/en/latest/roles/reproducer.html">CI-Framework</a>.</p>
-<h2 id="using-the-reproducer-role">Using the reproducer role<a class="headerlink" href="#using-the-reproducer-role" title="Permanent link">#</a></h2>
-<p>Additional parameters can be passed to the reproducer role of the CI-Framework,
-allowing you validate changes to the architecture repository remain functional
-within the contexts of kustomize and CI-Framework itself (which consumes the
-contents of the architecture repository).</p>
-<p>Use the <code>reproducer.yml</code> playbook within the CI-Framework to deploy the HCI
-validated architecture aka VA1 (or any other validated architecture or
-deployment topology that might be affected) with an environment file containing
-parameters denoting which branch and repository to deploy with. The custom
-parameter filename is not important, as long as it is passed to Ansible, and is
-valid.</p>
-<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span>reproducer.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-i<span class="w"> </span>custom/inventory.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span><span class="nv">cifmw_target_host</span><span class="o">=</span>hypervisor-1<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span>@scenarios/reproducers/va-hci.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span>@scenarios/reproducers/networking-definition.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span>@custom/default-vars.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span>@custom/secrets.yml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span>@custom/test-my_pr_branch.yml
-</code></pre></div>
-<p>The <code>test-my_pr_branch.yml</code> file contains parameters that identifies the remote
-git repository and branch name to deploy.</p>
-<p><strong>test-my_pr_branch.yml</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nt">remote_base_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/home/zuul/src/github.com/openstack-k8s-operators&quot;</span>
-<span class="nt">cifmw_reproducer_repositories</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://github.com/&lt;FORKED_ORGANIZATION&gt;/architecture&quot;</span>
-<span class="w">  </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">remote_base_dir</span><span class="nv"> </span><span class="s">}}/architecture&quot;</span>
-<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;BRANCH_TO_DEPLOY&gt;</span>
-</code></pre></div>
-<p>Once your environment has been deployed, provide any relevant output showing
-that the deployment was successful, and that the environment continues to
-operate nominally. Provide any additional output showing that the changes to
-the architecture repository have been deployed and are functioning as intended
-by the pull request. You can SSH into the controller-0 machine and review the
-contents of <code>/home/zuul/src/github.com/openstack-k8s-operators/architecture</code>
-which contains the content as configured by the <code>test-&lt;NAME&gt;.yml</code> parameter
+<h1 id="common-design-pitfalls">Common Design Pitfalls<a class="headerlink" href="#common-design-pitfalls" title="Permanent link">#</a></h1>
+<p>This document lists common pitfalls that have been observed in the process of
+creating and modifying VAs and DTs.</p>
+<h2 id="accidental-openstackcontrolplane-overwrites">Accidental OpenStackControlPlane Overwrites<a class="headerlink" href="#accidental-openstackcontrolplane-overwrites" title="Permanent link">#</a></h2>
+<p>In general, it is a best practice to keep all kustomizations (<code>patches</code>,
+<code>replacements</code>, etc) for a particular resource in one <code>kustomization.yaml</code>
 file.</p>
+<p>In some cases it is necessary to only perform a subset of
+<code>OpenStackControlPlane</code> kustomizations at a certain stage of the deployment
+process. For instance, you might not want to kustomize an
+<code>OpenStackControlPlane</code> CR with certain data during its initial creation stage
+because that data is not yet available for use. In the case of a multi-stage
+deployment, it would make sense to have a separate <code>kustomization.yaml</code> file to
+add those kustomizations once the requisite data is available (perhaps during
+the data plane deployment stage).</p>
+<p><strong>What is crucial to keep in mind is that any kustomizations to a resource in
+an earlier stage will be lost/overwritten in later stages where that same
+resource is modified <em>if</em> those stages do not reference the same
+<code>kustomization.yaml</code> that the earlier stage utilized.</strong></p>
+<p>It is best to have a base <code>kustomization.yaml</code> for a given resource for all
+kustomizations common to all stages -- and all those stages should reference
+that <code>kustomization.yaml</code>. If later stages need specific changes for that
+resource, a separate <code>kustomization.yaml</code> can used to apply those additional
+kustomizations beyond the base ones.</p>
+<p>The use of common base files is preferred to creating two nearly-identical
+<code>kustomization.yaml</code> files; one for the earlier stage and one for a later
+stage. Keeping things DRY by using a common base will make future potential
+changes to the <code>kustomization.yaml</code> files less prone to error, as changes to
+the common file will automatically be picked up by all deployment stages.</p>
+<p>As an illustrative example of the best practice mentioned above, consider the
+following directory structure:</p>
+<div class="highlight"><pre><span></span><code>some_dt_or_va/control_plane/kustomization.yaml
+some_dt_or_va/data_plane/kustomization.yaml
+</code></pre></div>
+<p>If the <code>data_plane/kustomization.yaml</code> needs to modify the
+<code>OpenStackControlPlane</code>, then it should reference
+<code>../control_plane/kustomization.yaml</code> as a <code>Component</code> and then add additional
+<code>replacements</code> and/or <code>patches</code> as needed. </p>
+<p>If it were to instead reference this repositories
+<a href="../../lib/control-plane">lib/control-plane</a> directory as its base
+<code>OpenStackControlPlane</code> <code>Component</code>, then the
+<code>../control_plane/kustomization.yaml</code> kustomizations would be lost, since the
+<code>OpenStackControlPlane</code> CR would be generated and applied without them.</p>
+<p>The kustomizations for an <code>OpenStackControlPlane</code> resource should be within a
+single <code>kustomization.yaml</code> that contains the kustomizations for the initial
+creation stage. You want to avoid the use of multiple files, such as creating
+an additional sub-directory within the same base directory containing the
+configuration. The following would be an example to avoid:</p>
+<div class="highlight"><pre><span></span><code>some_dt_or_va/control_plane/kustomization.yaml
+some_dt_or_va/control_plane/some_subdir/kustomization.yaml
+some_dt_or_va/data_plane/kustomization.yaml
+</code></pre></div>
+<p>In some cases having an additional nested directory may be valid, in the case a
+subdirectory was modifying some other resource like
+<code>NodeNetworkConfigurationPolicy</code>.</p>
+<p>If later stages do not want to accidentally overwrite earlier
+<code>OpenStackControlPlane</code> kustomizations, those later stages need to reference
+both <code>../control_plane/kustomization.yaml</code> and
+<code>../control_plane/some_subdir/kustomization.yaml</code> so that those stages are
+modifying the <code>OpenStackControlPlane</code>.</p>
+<p>It would be better for the two directories to be collapsed into one, such that
+a single <code>kustomization.yaml</code> can be referenced as a <code>Component</code> to include all
+the previous stage's kustomizations and not inadvertently overwrite them.</p>
 
 
 
@@ -798,7 +761,7 @@ file.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    2024-04-29
+    2024-11-13
   </span>
 
     
