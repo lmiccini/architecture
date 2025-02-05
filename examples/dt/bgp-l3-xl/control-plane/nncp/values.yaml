@@ -581,7 +581,7 @@ data:
           allocationRanges:
             - end: 100.64.0.36
               start: 100.64.0.1
-          cidr: 100.64.0.0/36
+          cidr: 100.64.0.0/24
           gateway: 100.64.0.1
           routes:
             - destination: 0.0.0.0/0
