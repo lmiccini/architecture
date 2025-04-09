@@ -125,11 +125,11 @@ data:
           ansibleHost: 192.168.122.200
           ansibleVars:
             edpm_ovn_bgp_agent_local_ovn_peer_ips:
-              - 100.64.0.11
-              - 100.65.0.11
+              - 100.64.0.13
+              - 100.65.0.13
             edpm_frr_bgp_peers:
-              - 100.64.0.11
-              - 100.65.0.11
+              - 100.64.0.13
+              - 100.65.0.13
         networks:
           - defaultRoute: true
             fixedIP: 192.168.122.200
@@ -143,10 +143,10 @@ data:
             subnetName: subnet1
           - name: Bgpnet0
             subnetName: subnet0
-            fixedIP: 100.64.0.12
+            fixedIP: 100.64.0.14
           - name: Bgpnet1
             subnetName: subnet0
-            fixedIP: 100.65.0.12
+            fixedIP: 100.65.0.14`
           - name: Bgpmainnet
             subnetName: subnet1
             fixedIP: 99.99.0.5
