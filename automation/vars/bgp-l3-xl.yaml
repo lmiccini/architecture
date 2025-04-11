@@ -28,8 +28,8 @@ vas:
                       include=-provider-${f:exec:cat:/var/lib/ocp-tuned/provider},openshift
 
                       [sysctl]
+                      net.ipv4.conf.enp7s0.rp_filter=0
                       net.ipv4.conf.enp8s0.rp_filter=0
-                      net.ipv4.conf.enp9s0.rp_filter=0
                     name: openshift-no-reapply-sysctl
                 recommend:
                   - match:
