@@ -36,15 +36,6 @@ spec:
         mtu: 1500
         ipv4:
           enabled: false
-      - description: ctlplane interface
-        name: _replaced_
-        state: up
-        type: ethernet
-        mtu: 1500
-        ipv4:
-          enabled: false
-        ipv6:
-          enabled: false
   nodeSelector:
     kubernetes.io/hostname: _replaced_
     node-role.kubernetes.io/worker: ""
