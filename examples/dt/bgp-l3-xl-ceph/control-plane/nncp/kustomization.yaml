@@ -147,35 +147,35 @@ patches:
           name: _replaced_
           mtu: 65536
           state: up
-  - target:
-      kind: NodeNetworkConfigurationPolicy
-    patch: |-
-      - op: add
-        path: /spec/desiredState/interfaces/-
-        value:
-          description: Octavia vlan host interface
-          name: octavia
-          state: up
-          type: vlan
-          vlan:
-            base-iface: _replaced_
-            id: _replaced_
-  - target:
-      kind: NodeNetworkConfigurationPolicy
-    patch: |-
-      - op: add
-        path: /spec/desiredState/interfaces/-
-        value:
-          description: Octavia bridge
-          mtu: 1500
-          name: octbr
-          type: linux-bridge
-          bridge:
-            options:
-              stp:
-                enabled: false
-            port:
-              - name: octavia
+#  - target:
+#      kind: NodeNetworkConfigurationPolicy
+#    patch: |-
+#      - op: add
+#        path: /spec/desiredState/interfaces/-
+#        value:
+#          description: Octavia vlan host interface
+#          name: octavia
+#          state: up
+#          type: vlan
+#          vlan:
+#            base-iface: _replaced_
+#            id: _replaced_
+#  - target:
+#      kind: NodeNetworkConfigurationPolicy
+#    patch: |-
+#      - op: add
+#        path: /spec/desiredState/interfaces/-
+#        value:
+#          description: Octavia bridge
+#          mtu: 1500
+#          name: octbr
+#          type: linux-bridge
+#          bridge:
+#            options:
+#              stp:
+#                enabled: false
+#            port:
+#              - name: octavia
   # Fix roles on masters
   - target:
       kind: NodeNetworkConfigurationPolicy
@@ -246,35 +246,35 @@ replacements:
           kind: NodeNetworkConfigurationPolicy
           name: node-7
         fieldPaths:
-          - metadata.name
-          - spec.nodeSelector.[kubernetes.io/hostname]
-
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.node_8.name
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: node-8
-        fieldPaths:
-          - metadata.name
-          - spec.nodeSelector.[kubernetes.io/hostname]
-
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.node_9.name
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: node-9
-        fieldPaths:
-          - metadata.name
-          - spec.nodeSelector.[kubernetes.io/hostname]
-
-  - source:
-      kind: ConfigMap
+#          - metadata.name
+#          - spec.nodeSelector.[kubernetes.io/hostname]
+#
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.node_8.name
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#          name: node-8
+#        fieldPaths:
+#          - metadata.name
+#          - spec.nodeSelector.[kubernetes.io/hostname]
+#
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.node_9.name
+#    targets:
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#          name: node-9
+#        fieldPaths:
+#          - metadata.name
+#          - spec.nodeSelector.[kubernetes.io/hostname]
+#
+#  - source:
+#      kind: ConfigMap
       name: network-values
       fieldPath: data.node_10.name
     targets:
@@ -1204,26 +1204,26 @@ replacements:
           name: worker-9
         fieldPaths:
           - spec.desiredState.interfaces.5.ipv6.address.0.prefix-length
-  # Octavia
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.octavia.base_iface
-    targets:  # octavia interfaces are needed on the workers, except worker-3
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-        fieldPaths:
-          - spec.desiredState.interfaces.[name=octavia].vlan.base-iface
-
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.octavia.vlan
-    targets:  # octavia interfaces are needed on the workers, except worker-3
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-        fieldPaths:
-          - spec.desiredState.interfaces.[name=octavia].vlan.id
+#  # Octavia
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.octavia.base_iface
+#    targets:  # octavia interfaces are needed on the workers, except worker-3
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=octavia].vlan.base-iface
+#
+#  - source:
+#      kind: ConfigMap
+#      name: network-values
+#      fieldPath: data.octavia.vlan
+#    targets:  # octavia interfaces are needed on the workers, except worker-3
+#      - select:
+#          kind: NodeNetworkConfigurationPolicy
+#        fieldPaths:
+#          - spec.desiredState.interfaces.[name=octavia].vlan.id
 
   # Overwrite worker-9 base routes
   - source:
