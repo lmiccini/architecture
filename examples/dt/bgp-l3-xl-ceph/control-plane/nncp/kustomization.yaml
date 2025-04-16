@@ -1175,7 +1175,6 @@ replacements:
           name: worker-9
         fieldPaths:
           - spec.desiredState.interfaces.5.ipv6.address.0.prefix-length
-
   # Overwrite worker-9 base routes
   - source:
       kind: ConfigMap
