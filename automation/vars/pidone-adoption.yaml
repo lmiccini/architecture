@@ -1,0 +1,30 @@
+---
+vas:
+  pidone-adoption:
+    stages:
+      - pre_stage_run:
+          - name: Apply taint on worker-3
+            type: cr
+            definition:
+              spec:
+                taints:
+                  - effect: NoSchedule
+                    key: testOperator
+                    value: 'true'
+                  - effect: NoExecute
+                    key: testOperator
+                    value: 'true'
+            kind: Node
+            resource_name: worker-3
+            state: patched
+        path: examples/dt/pidone/nncp
+        wait_conditions:
+          - >-
+            oc -n openstack wait nncp
+            -l osp/nncm-config-type=standard
+            --for jsonpath='{.status.conditions[0].reason}'=SuccessfullyConfigured
+            --timeout=180s
+        values:
+          - name: network-values
+            src_file: values.yaml
+        build_output: nncp.yaml
