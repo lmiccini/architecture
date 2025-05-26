@@ -17,7 +17,7 @@ vas:
             kind: Node
             resource_name: worker-3
             state: patched
-        path: examples/dt/pidone/nncp
+        path: examples/dt/pidone/control-plane/networking/nncp
         wait_conditions:
           - >-
             oc -n openstack wait nncp
@@ -28,3 +28,16 @@ vas:
           - name: network-values
             src_file: values.yaml
         build_output: nncp.yaml
+
+      - name: network-configuration
+        path: examples/dt/pidone/control-plane/networking
+        wait_conditions:
+          - >-
+            oc -n metallb-system wait pod
+            -l app=metallb -l component=speaker
+            --for condition=Ready
+            --timeout=5m
+        values:
+          - name: network-values
+            src_file: nncp/values.yaml
+        build_output: networking.yaml
