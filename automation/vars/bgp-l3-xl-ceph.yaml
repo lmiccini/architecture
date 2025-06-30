@@ -63,7 +63,8 @@ vas:
             resource_name: openshift-no-reapply-sysctl
             namespace: openshift-cluster-node-tuning-operator
             state: present
-        path: examples/dt/bgp-l3-xl-ceph/control-plane/nncp
+        name: nncp-configuration
+        path: examples/dt/bgp-l3-xl-ceph/control-plane/networking/nncp
         wait_conditions:
           - >-
             oc -n openstack wait nncp
@@ -75,7 +76,20 @@ vas:
             src_file: values.yaml
         build_output: nncp.yaml
 
-      - path: examples/dt/bgp-l3-xl-ceph/control-plane
+      - name: networking
+        path: examples/dt/bgp-l3-xl-ceph/control-plane/networking
+        wait_conditions:
+          - >-
+            oc -n metallb-system wait pod
+            -l app=metallb -l component=speaker
+            --for condition=Ready
+        values:
+          - name: network-values
+            src_file: nncp/values.yaml
+        build_output: networking.yaml
+
+      - name: control-plane
+        path: examples/dt/bgp-l3-xl-ceph/control-plane
         wait_conditions:
           - >-
             oc -n openstack wait openstackcontrolplane
@@ -84,7 +98,7 @@ vas:
             --timeout=30m
         values:
           - name: network-values
-            src_file: nncp/values.yaml
+            src_file: networking/nncp/values.yaml
           - name: service-values
             src_file: service-values.yaml
         build_output: control-plane.yaml
@@ -99,7 +113,7 @@ vas:
             namespace: openstack
             state: present
 
-      -  # stage_2
+      - name: edpm-computes-r0-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/computes/r0
         wait_conditions:
           - >-
@@ -112,7 +126,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r0-compute-nodeset.yaml
 
-      -  # stage_3
+      - name: edpm-computes-r1-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/computes/r1
         wait_conditions:
           - >-
@@ -125,7 +139,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r1-compute-nodeset.yaml
 
-      -  # stage_4
+      - name: edpm-computes-r2-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/computes/r2
         wait_conditions:
           - >-
@@ -138,7 +152,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r2-compute-nodeset.yaml
 
-      -  # stage_5
+      - name: edpm-networkers-r0-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/networkers/r0
         wait_conditions:
           - >-
@@ -151,7 +165,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r0-networker-nodeset.yaml
 
-      -  # stage_6
+      - name: edpm-networkers-r1-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/networkers/r1
         wait_conditions:
           - >-
@@ -164,7 +178,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r1-networker-nodeset.yaml
 
-      -  # stage_7
+      - name: edpm-networkers-r2-nodeset
         path: examples/dt/bgp-l3-xl-ceph/edpm/networkers/r2
         wait_conditions:
           - >-
@@ -177,7 +191,7 @@ vas:
             src_file: values.yaml
         build_output: edpm-r2-networker-nodeset.yaml
 
-      -  # stage_8
+      - name: edpm-deployment
         path: examples/dt/bgp-l3-xl-ceph/edpm/deployment
         wait_conditions:
           - >-
