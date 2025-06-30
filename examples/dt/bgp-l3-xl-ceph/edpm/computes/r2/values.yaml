@@ -227,10 +227,10 @@ data:
       - download-cache
       - bootstrap
       - configure-network
-      - validate-network
       - install-os
       - configure-os
       - frr
+      - validate-network
       - run-os
       - reboot-os
       - install-certs
