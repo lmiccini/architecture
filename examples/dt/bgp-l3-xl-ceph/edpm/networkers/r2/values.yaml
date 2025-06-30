@@ -157,10 +157,10 @@ data:
       - download-cache
       - bootstrap
       - configure-network
-      - validate-network
       - install-os
       - configure-os
       - frr
+      - validate-network
       - ssh-known-hosts
       - run-os
       - reboot-os
