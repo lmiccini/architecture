@@ -209,3 +209,8 @@ vas:
             source: "../../playbooks/bgp-l3-computes-ready.yml"
             extra_vars:
               num_computes: 6
+          - name: Deploy SNR/NHC
+            type: playbook
+            source: "../../playbooks/snr-nhc.yml"
+            extra_vars:
+              cleanup_before_install: true
