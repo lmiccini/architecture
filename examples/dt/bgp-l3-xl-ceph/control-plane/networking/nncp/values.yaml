@@ -353,7 +353,7 @@ data:
         "bridge": "ctlplane",
         "isDefaultGateway": true,
         "forceAddress": false,
-        "ipMasq": true,
+        "ipMasq": false,
         "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
@@ -391,7 +391,7 @@ data:
         "bridge": "internalapi",
         "isDefaultGateway": true,
         "forceAddress": false,
-        "ipMasq": true,
+        "ipMasq": false,
         "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
@@ -424,7 +424,7 @@ data:
         "bridge": "storage",
         "isDefaultGateway": true,
         "forceAddress": false,
-        "ipMasq": true,
+        "ipMasq": false,
         "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
@@ -457,7 +457,7 @@ data:
         "bridge": "tenant",
         "isDefaultGateway": true,
         "forceAddress": false,
-        "ipMasq": true,
+        "ipMasq": false,
         "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
