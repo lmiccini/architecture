@@ -353,7 +353,7 @@ data:
         "bridge": "ctlplane",
         "isDefaultGateway": true,
         "forceAddress": false,
-        "ipMasq": false,
+        "ipMasq": true,
         "hairpinMode": true,
         "ipam": {
           "type": "whereabouts",
