@@ -147,6 +147,131 @@ patches:
           name: _replaced_
           mtu: 65536
           state: up
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vlan10 for vrf1 on top of bgp nic1
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: 30
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1450
+          name: enp7s0.10
+          state: up
+          type: vlan
+          vlan:
+            base-iface: enp7s0
+            id: "10"
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vlan20 for vrf2 on top of bgp nic1
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: 30
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1450
+          name: enp7s0.20
+          state: up
+          type: vlan
+          vlan:
+            base-iface: enp7s0
+            id: "20"
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vlan10 for vrf1 on top of bgp nic2
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: 30
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1450
+          name: enp8s0.10
+          state: up
+          type: vlan
+          vlan:
+            base-iface: enp8s0
+            id: "10"
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vlan20 for vrf2 on top of bgp nic2
+          ipv4:
+            address:
+            - ip: _replaced_
+              prefix-length: 30
+            enabled: true
+            dhcp: false
+          ipv6:
+            enabled: false
+          mtu: 1450
+          name: enp8s0.20
+          state: up
+          type: vlan
+          vlan:
+            base-iface: enp8s0
+            id: "20"
+
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vrf1
+          name: openstack-vrf1
+          state: up
+          type: vrf
+          vrf:
+            port:
+            - enp7s0.10
+            route-table-id: 100
+
+  - target:
+      kind: NodeNetworkConfigurationPolicy
+    patch: |-
+      - op: add
+        path: /spec/desiredState/interfaces/-
+        value:
+          description: vrf2
+          name: openstack-vrf2
+          state: up
+          type: vrf
+          vrf:
+            port:
+            - enp7s0.20
+            route-table-id: 200
+
+
   # Fix roles on masters
   - target:
       kind: NodeNetworkConfigurationPolicy
@@ -322,6 +447,49 @@ replacements:
           name: master-0
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-0
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-0
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-0
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_0.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-0
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
+
   # BGP master-1/node-1 IPs
   - source:
       kind: ConfigMap
@@ -363,6 +531,48 @@ replacements:
           name: master-1
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-1
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-1
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-1
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_1.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-1
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP master-2/node-2 IPs
   - source:
       kind: ConfigMap
@@ -404,6 +614,48 @@ replacements:
           name: master-2
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-2
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-2
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-2
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_2.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: master-2
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-0/node-3 IPs
   - source:
       kind: ConfigMap
@@ -445,6 +697,48 @@ replacements:
           name: worker-0
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_3.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-0
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_3.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-0
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_3.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-0
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_3.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-0
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-1/node-4 IPs
   - source:
       kind: ConfigMap
@@ -486,6 +780,48 @@ replacements:
           name: worker-1
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_4.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-1
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_4.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-1
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_4.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-1
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_4.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-1
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-2/node-5 IPs
   - source:
       kind: ConfigMap
@@ -527,6 +863,48 @@ replacements:
           name: worker-2
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_5.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-2
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_5.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-2
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_5.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-2
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_5.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-2
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-3/node-6 IPs
   - source:
       kind: ConfigMap
@@ -568,6 +946,48 @@ replacements:
           name: worker-3
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_6.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-3
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_6.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-3
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_6.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-3
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_6.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-3
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-4/node-7 IPs
   - source:
       kind: ConfigMap
@@ -609,6 +1029,48 @@ replacements:
           name: worker-4
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_7.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-4
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_7.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-4
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_7.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-4
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_7.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-4
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-5/node-8 IPs
   - source:
       kind: ConfigMap
@@ -650,6 +1112,48 @@ replacements:
           name: worker-5
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_8.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-5
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_8.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-5
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_8.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-5
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_8.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-5
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-6/node-9 IPs
   - source:
       kind: ConfigMap
@@ -691,6 +1195,48 @@ replacements:
           name: worker-6
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_9.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-6
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_9.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-6
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_9.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-6
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_9.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-6
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-7/node_10 IPs
   - source:
       kind: ConfigMap
@@ -732,6 +1278,48 @@ replacements:
           name: worker-7
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_10.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-7
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_10.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-7
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_10.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-7
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_10.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-7
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-8/node_11 IPs
   - source:
       kind: ConfigMap
@@ -773,6 +1361,48 @@ replacements:
           name: worker-8
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_11.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-8
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_11.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-8
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_11.bgp_vrf1_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-8
+        fieldPaths:
+          - spec.desiredState.interfaces.9.ipv4.address.0.ip
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_11.bgp_vrf2_ip.1
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-8
+        fieldPaths:
+          - spec.desiredState.interfaces.10.ipv4.address.0.ip
   # BGP worker-9/node-12 IPs
   - source:
       kind: ConfigMap
@@ -804,6 +1434,28 @@ replacements:
           name: worker-9
         fieldPaths:
           - spec.desiredState.interfaces.5.ipv6.address.0.ip
+  #vrf1
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_12.bgp_vrf1_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-9
+        fieldPaths:
+          - spec.desiredState.interfaces.7.ipv4.address.0.ip
+  #vrf2
+  - source:
+      kind: ConfigMap
+      name: network-values
+      fieldPath: data.node_12.bgp_vrf2_ip.0
+    targets:
+      - select:
+          kind: NodeNetworkConfigurationPolicy
+          name: worker-9
+        fieldPaths:
+          - spec.desiredState.interfaces.8.ipv4.address.0.ip
 
 
   # BGP values
@@ -1175,6 +1827,9 @@ replacements:
           name: worker-9
         fieldPaths:
           - spec.desiredState.interfaces.5.ipv6.address.0.prefix-length
+
+
+
   # Overwrite worker-9 base routes
   - source:
       kind: ConfigMap
