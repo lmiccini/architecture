@@ -832,6 +832,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.13
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.0.13
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.0.13
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.0.13
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.0.13
+              next-hop-interface: enp8s0
       node1:
         bgpnet0:
           bgp_peer: 100.64.1.13
@@ -847,6 +859,18 @@ data:
               next-hop-address: 100.64.1.13
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.1.13
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.1.13
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.1.13
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.1.13
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.1.13
               next-hop-interface: enp8s0
       node2:
@@ -866,6 +890,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.13
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.2.13
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.2.13
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.2.13
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.2.13
+              next-hop-interface: enp8s0
       node3:
         bgpnet0:
           bgp_peer: 100.64.0.17
@@ -881,6 +917,18 @@ data:
               next-hop-address: 100.64.0.17
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.0.17
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.0.17
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.0.17
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.0.17
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.0.17
               next-hop-interface: enp8s0
       node4:
@@ -900,6 +948,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.0.21
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.0.21
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.0.21
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.0.21
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.0.21
+              next-hop-interface: enp8s0
       node5:
         bgpnet0:
           bgp_peer: 100.64.0.25
@@ -915,6 +975,18 @@ data:
               next-hop-address: 100.64.0.25
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.0.25
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.0.25
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.0.25
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.0.25
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.0.25
               next-hop-interface: enp8s0
       node6:
@@ -934,6 +1006,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.17
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.1.17
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.1.17
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.1.17
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.1.17
+              next-hop-interface: enp8s0
       node7:
         bgpnet0:
           bgp_peer: 100.64.1.21
@@ -949,6 +1033,18 @@ data:
               next-hop-address: 100.64.1.21
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.1.21
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.1.21
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.1.21
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.1.21
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.1.21
               next-hop-interface: enp8s0
       node8:
@@ -968,6 +1064,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.1.25
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.1.25
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.1.25
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.1.25
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.1.25
+              next-hop-interface: enp8s0
       node9:
         bgpnet0:
           bgp_peer: 100.64.2.17
@@ -983,6 +1091,18 @@ data:
               next-hop-address: 100.64.2.17
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.2.17
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.2.17
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.2.17
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.2.17
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.2.17
               next-hop-interface: enp8s0
       node10:
@@ -1002,6 +1122,18 @@ data:
             - destination: 99.99.0.0/16
               next-hop-address: 100.65.2.21
               next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.2.21
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.2.21
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.2.21
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.65.2.21
+              next-hop-interface: enp8s0
       node11:
         bgpnet0:
           bgp_peer: 100.64.2.25
@@ -1017,6 +1149,18 @@ data:
               next-hop-address: 100.64.2.25
               next-hop-interface: enp7s0
             - destination: 99.99.0.0/16
+              next-hop-address: 100.65.2.25
+              next-hop-interface: enp8s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.64.2.25
+              next-hop-interface: enp7s0
+            - destination: 172.31.0.0/24
+              next-hop-address: 100.65.2.25
+              next-hop-interface: enp8s0
+            - destination: 192.168.188.0/24
+              next-hop-address: 100.64.2.25
+              next-hop-interface: enp7s0
+            - destination: 192.168.188.0/24
               next-hop-address: 100.65.2.25
               next-hop-interface: enp8s0
       node12:
