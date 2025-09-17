@@ -403,6 +403,11 @@ networks:
             start: 172.17.0.30
             start_host: 30
         ipv6_ranges: []
+        ipv4_routes:
+          - destination: 99.99.0.0/16
+            gateway: 172.17.0.1
+          - destination: 172.31.0.0/16
+            gateway: 172.17.0.1
       netconfig:
         ipv4_ranges:
           - end: 172.17.0.250
