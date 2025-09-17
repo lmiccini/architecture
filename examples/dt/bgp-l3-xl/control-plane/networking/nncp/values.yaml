@@ -30,6 +30,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.13
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.0.13
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.0.13
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.0.13
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.0.13
+          next-hop-interface: enp8s0
   node_1:
     name: master-1
     internalapi_ip: 172.17.0.6
@@ -50,6 +62,18 @@ data:
           next-hop-address: 100.64.1.13
           next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
+          next-hop-address: 100.65.1.13
+          next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.1.13
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.1.13
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.1.13
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.65.1.13
           next-hop-interface: enp8s0
   node_2:
@@ -74,6 +98,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.13
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.2.13
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.2.13
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.2.13
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.2.13
+          next-hop-interface: enp8s0
   node_3:
     name: worker-0
     internalapi_ip: 172.17.0.8
@@ -94,6 +130,18 @@ data:
           next-hop-address: 100.64.0.17
           next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
+          next-hop-address: 100.65.0.17
+          next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.0.17
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.0.17
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.0.17
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.65.0.17
           next-hop-interface: enp8s0
   node_4:
@@ -118,6 +166,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.21
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.0.21
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.0.21
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.0.21
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.0.21
+          next-hop-interface: enp8s0
   node_5:
     name: worker-2
     internalapi_ip: 172.17.0.10
@@ -140,6 +200,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.0.25
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.0.25
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.0.25
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.0.25
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.0.25
+          next-hop-interface: enp8s0
   node_6:
     name: worker-3
     internalapi_ip: 172.17.0.11
@@ -160,6 +232,18 @@ data:
           next-hop-address: 100.64.1.17
           next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
+          next-hop-address: 100.65.1.17
+          next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.1.17
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.1.17
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.1.17
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.65.1.17
           next-hop-interface: enp8s0
 
@@ -185,6 +269,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.1.21
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.1.21
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.1.21
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.1.21
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.1.21
+          next-hop-interface: enp8s0
   node_8:
     name: worker-5
     internalapi_ip: 172.17.0.13
@@ -205,6 +301,18 @@ data:
           next-hop-address: 100.64.1.25
           next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
+          next-hop-address: 100.65.1.25
+          next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.1.25
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.1.25
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.1.25
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.65.1.25
           next-hop-interface: enp8s0
   node_9:
@@ -229,6 +337,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.17
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.2.17
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.2.17
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.2.17
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.2.17
+          next-hop-interface: enp8s0
   node_10:
     name: worker-7
     internalapi_ip: 172.17.0.15
@@ -249,6 +369,18 @@ data:
           next-hop-address: 100.64.2.21
           next-hop-interface: enp7s0
         - destination: 99.99.0.0/16
+          next-hop-address: 100.65.2.21
+          next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.2.21
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.2.21
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.2.21
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.65.2.21
           next-hop-interface: enp8s0
   node_11:
@@ -273,6 +405,18 @@ data:
         - destination: 99.99.0.0/16
           next-hop-address: 100.65.2.25
           next-hop-interface: enp8s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.2.25
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.65.2.25
+          next-hop-interface: enp8s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.64.2.25
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
+          next-hop-address: 100.65.2.25
+          next-hop-interface: enp8s0
   # test worker
   node_12:
     name: worker-9
@@ -290,6 +434,12 @@ data:
     routes:
       config:
         - destination: 192.168.133.0/24
+          next-hop-address: 100.64.10.1
+          next-hop-interface: enp7s0
+        - destination: 172.31.0.0/24
+          next-hop-address: 100.64.10.1
+          next-hop-interface: enp7s0
+        - destination: 192.168.188.0/24
           next-hop-address: 100.64.10.1
           next-hop-interface: enp7s0
 
