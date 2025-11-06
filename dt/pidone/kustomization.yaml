@@ -46,6 +46,17 @@ patches:
       - op: replace
         path: /spec/heat/enabled
         value: true
+  # Enable quorumqueues
+  - target:
+      kind: OpenStackControlPlane
+      name: controlplane
+    patch: |-
+      - op: add
+        path: /spec/rabbitmq/templates/rabbitmq/queueType
+        value: Quorum
+      - op: add
+        path: /spec/rabbitmq/templates/rabbitmq-cell1/queueType
+        value: Quorum
 
 replacements:
   - source:
