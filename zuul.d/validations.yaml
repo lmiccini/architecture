@@ -449,10 +449,11 @@
     files:
     - automation/net-env/pidone.yaml
     - dt/pidone
-    - examples/dt/pidone
+    - examples/dt/pidone/control-plane
+    - examples/dt/pidone/control-plane/networking
+    - examples/dt/pidone/control-plane/networking/nncp
     - examples/dt/pidone/edpm/deployment
     - examples/dt/pidone/edpm/nodeset
-    - examples/dt/pidone/nncp
     - lib
     name: rhoso-architecture-validate-pidone
     parent: rhoso-architecture-base-job

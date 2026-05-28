@@ -32,3 +32,7 @@ data:
       replicas: 1
   swift:
     enabled: true
+  telemetry:
+    enabled: true
+    metricStorage:
+      enabled: true

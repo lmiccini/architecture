@@ -147,7 +147,7 @@ data:
           "range_end": "172.18.0.70"
         }
       }
-  storagemgmt:  # used on RHEL, not used on OpenShift
+  storagemgmt:
     dnsDomain: storagemgmt.example.com
     subnets:
       - allocationRanges:

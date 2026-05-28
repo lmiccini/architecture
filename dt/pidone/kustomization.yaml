@@ -18,26 +18,9 @@ transformers:
         create: true
 
 components:
-  - ../../lib/networking/metallb
-  - ../../lib/networking/netconfig
-  - ../../lib/networking/nad
   - ../../lib/control-plane
 
-# Add storagemgmt network template, as it is needed for CephHCI
 patches:
-  - target:
-      version: v1beta1
-      kind: NetConfig
-      name: netconfig
-    patch: |-
-      - op: add
-        path: /spec/networks/-
-        value:
-          dnsDomain: _replaced_
-          name: storagemgmt
-          subnets:
-            - _replaced_
-          mtu: 1500
   # Enable heat
   - target:
       kind: OpenStackControlPlane
@@ -45,6 +28,21 @@ patches:
     patch: |-
       - op: replace
         path: /spec/heat/enabled
+        value: true
+  # Enable telemetry and metricstorage
+  - target:
+      kind: OpenStackControlPlane
+      name: controlplane
+    patch: |-
+      - op: replace
+        path: /spec/telemetry/enabled
+        value: true
+  - target:
+      kind: OpenStackControlPlane
+      name: controlplane
+    patch: |-
+      - op: replace
+        path: /spec/telemetry/template/metricStorage/enabled
         value: true
 
 replacements:
@@ -81,33 +79,25 @@ replacements:
           - spec.swift.enabled
         options:
           create: true
-  # NetConfig dnsDomain specific to this VA
   - source:
       kind: ConfigMap
-      name: network-values
-      fieldPath: data.storagemgmt.dnsDomain
+      name: service-values
+      fieldPath: data.telemetry.enabled
     targets:
       - select:
-          kind: NetConfig
+          kind: OpenStackControlPlane
         fieldPaths:
-          - spec.networks.[name=storagemgmt].dnsDomain
-  # NetConfig MTU specific to this VA
+          - spec.telemetry.enabled
+        options:
+          create: true
   - source:
       kind: ConfigMap
-      name: network-values
-      fieldPath: data.storagemgmt.mtu
+      name: service-values
+      fieldPath: data.telemetry.metricStorage.enabled
     targets:
       - select:
-          kind: NetConfig
+          kind: OpenStackControlPlane
         fieldPaths:
-          - spec.networks.[name=storagemgmt].mtu
-  # NetConfig subnets specific to this VA
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.storagemgmt.subnets
-    targets:
-      - select:
-          kind: NetConfig
-        fieldPaths:
-          - spec.networks.[name=storagemgmt].subnets
+          - spec.telemetry.template.metricStorage.enabled
+        options:
+          create: true
