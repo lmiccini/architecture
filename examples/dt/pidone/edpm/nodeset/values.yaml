@@ -8,6 +8,17 @@ metadata:
   annotations:
     config.kubernetes.io/local-config: "true"
 data:
+  root_password: cmVkaGF0Cg==
+  preProvisioned: false
+  baremetalSetTemplate:
+    ctlplaneInterface: enp1s0  # CHANGEME
+    cloudUserName: cloud-admin
+    provisioningInterface: enp1s0  # CHANGEME
+    bmhLabelSelector:
+      app: openstack  # CHANGEME
+    passwordSecret:
+      name: baremetalset-password-secret
+      namespace: openstack
   ssh_keys:
     # Authorized keys that will have access to the dataplane computes via SSH
     authorized: CHANGEME

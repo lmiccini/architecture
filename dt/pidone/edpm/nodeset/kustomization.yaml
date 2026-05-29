@@ -18,3 +18,21 @@ transformers:
 
 components:
  - ../../../../lib/dataplane/nodeset
+ - ../../../../lib/dataplane/nodeset-baremetal
+
+resources:
+ - baremetalset-password-secret.yaml
+
+replacements:
+ - source:
+     kind: ConfigMap
+     name: edpm-nodeset-values
+     fieldPath: data.root_password
+   targets:
+     - select:
+         kind: Secret
+         name: baremetalset-password-secret
+       fieldPaths:
+         - data.NodeRootPassword
+       options:
+         create: true
