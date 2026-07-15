@@ -238,19 +238,3 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values: ["worker-7"]
----
-apiVersion: metallb.io/v1beta2
-kind: BGPPeer
-metadata:
-  name: bgp-peer-node-10-1
-  namespace: metallb-system
-spec:
-  myASN: 64999
-  peerASN: 64999
-  peerAddress: _replaced_
-  password: f00barZ
-  nodeSelectors:
-    - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values: ["worker-7"]

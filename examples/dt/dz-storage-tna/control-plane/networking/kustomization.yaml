@@ -75,9 +75,6 @@ patches:
       - op: add
         path: /spec/peers/-
         value: bgp-peer-node-10-0
-      - op: add
-        path: /spec/peers/-
-        value: bgp-peer-node-10-1
   - target:
       kind: NetworkAttachmentDefinition
       labelSelector: "osp/net-attach-def-type=bgp"
@@ -251,7 +248,7 @@ replacements:
           name: bgp-peer-node-9-1
         fieldPaths:
           - spec.peerAddress
-  # node10
+  # node10 (tester - only 1 BGP peer)
   - source:
       kind: ConfigMap
       name: network-values
@@ -260,16 +257,6 @@ replacements:
       - select:
           kind: BGPPeer
           name: bgp-peer-node-10-0
-        fieldPaths:
-          - spec.peerAddress
-  - source:
-      kind: ConfigMap
-      name: network-values
-      fieldPath: data.node_10.bgp_peers.1
-    targets:
-      - select:
-          kind: BGPPeer
-          name: bgp-peer-node-10-1
         fieldPaths:
           - spec.peerAddress
 
