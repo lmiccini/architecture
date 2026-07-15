@@ -172,7 +172,7 @@ data:
           weight: 200
   # test worker
   node_10:
-    name: worker-9
+    name: worker-7
     internalapi_ip: 172.17.0.14
     ctlplane_ip: 192.168.122.19
     storage_ip: 172.18.0.14
@@ -678,7 +678,7 @@ data:
       node10: |
         {
           "cniVersion": "0.3.1",
-          "name": "bgpnet-worker-9",
+          "name": "bgpnet-worker-7",
           "type": "host-device",
           "device": "enp8s0",
           "ipam": {

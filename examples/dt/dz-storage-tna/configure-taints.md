@@ -8,7 +8,7 @@ Due to this, taints should be configured on this worker.
 
 Execute the following command:
 ```
-oc patch node/worker-9 --type merge --patch '
+oc patch node/worker-7 --type merge --patch '
   spec:
     taints:
       - effect: NoSchedule
