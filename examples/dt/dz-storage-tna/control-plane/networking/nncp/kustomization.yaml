@@ -595,7 +595,7 @@ replacements:
           name: worker-6
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.ip
-  # BGP worker-7/node_10 IPs
+  # BGP worker-7/node_10 IPs (tester - only 1 BGP peer, loopback at interface.5)
   - source:
       kind: ConfigMap
       name: network-values
@@ -609,7 +609,7 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_10.bgp_ip.1
+      fieldPath: data.node_10.loopback_ip
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
@@ -619,23 +619,13 @@ replacements:
   - source:
       kind: ConfigMap
       name: network-values
-      fieldPath: data.node_10.loopback_ip
-    targets:
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: worker-7
-        fieldPaths:
-          - spec.desiredState.interfaces.6.ipv4.address.0.ip
-  - source:
-      kind: ConfigMap
-      name: network-values
       fieldPath: data.node_10.loopback_ipv6
     targets:
       - select:
           kind: NodeNetworkConfigurationPolicy
           name: worker-7
         fieldPaths:
-          - spec.desiredState.interfaces.6.ipv6.address.0.ip
+          - spec.desiredState.interfaces.5.ipv6.address.0.ip
   # BGP values
   - source:
       kind: ConfigMap
