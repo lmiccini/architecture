@@ -229,7 +229,7 @@ data:
     apiOverride:
       route:
         haproxy.router.openshift.io/timeout: 60s
-    enabled: true
+    enabled: false
     template:
       manilaAPI:
         customServiceConfig: |
