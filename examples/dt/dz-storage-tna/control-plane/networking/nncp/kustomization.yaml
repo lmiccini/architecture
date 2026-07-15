@@ -67,26 +67,6 @@ patches:
           type: ethernet
   - target:
       kind: NodeNetworkConfigurationPolicy
-      name: "node-10"
-    patch: |-
-      - op: add
-        path: /spec/desiredState/interfaces/-
-        value:
-          description: BGP interface 2
-          ipv4:
-            address:
-            - ip: _replaced_
-              prefix-length: _replaced_
-            enabled: true
-            dhcp: false
-          ipv6:
-            enabled: false
-          mtu: 1500
-          name: _replaced_
-          state: up
-          type: ethernet
-  - target:
-      kind: NodeNetworkConfigurationPolicy
     patch: |-
       - op: add
         path: /spec/desiredState/interfaces/-
