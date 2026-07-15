@@ -702,12 +702,7 @@ replacements:
           name: worker-6
         fieldPaths:
           - spec.desiredState.interfaces.6.name
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: worker-7
-        fieldPaths:
-          - spec.desiredState.interfaces.6.name
-      - select:  # in case of worker-7 (tester), there is one less interface
+      - select:  # worker-7 (tester) has one less interface
           kind: NodeNetworkConfigurationPolicy
           name: worker-7
         fieldPaths:
@@ -811,12 +806,7 @@ replacements:
           name: worker-6
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv4.address.0.prefix-length
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: worker-7
-        fieldPaths:
-          - spec.desiredState.interfaces.6.ipv4.address.0.prefix-length
-      - select:  # in case of worker-7 (tester), there is one less interface
+      - select:  # worker-7 (tester) has one less interface
           kind: NodeNetworkConfigurationPolicy
           name: worker-7
         fieldPaths:
@@ -861,12 +851,7 @@ replacements:
           name: worker-6
         fieldPaths:
           - spec.desiredState.interfaces.6.ipv6.address.0.prefix-length
-      - select:
-          kind: NodeNetworkConfigurationPolicy
-          name: worker-7
-        fieldPaths:
-          - spec.desiredState.interfaces.6.ipv6.address.0.prefix-length
-      - select:  # in case of worker-7 (tester), there is one less interface
+      - select:  # worker-7 (tester) has one less interface
           kind: NodeNetworkConfigurationPolicy
           name: worker-7
         fieldPaths:
